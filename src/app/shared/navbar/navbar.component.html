@@ -1,0 +1,53 @@
+<header class="general-container">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <div class="container">
+        <!-- Logo al costado izquierdo -->
+        <a class="navbar-brand" [routerLink]="['/home']" href="#">
+          <img class="logo" src="./assets/images/Screenshot 2024-02-19 160010.png" alt="" height="30">
+        </a>
+        <!-- Botón para colapsar el navbar en dispositivos pequeños -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Contenido del navbar -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Barra de búsqueda en el medio que ocupa la mitad del espacio -->
+          <form class="mx-auto w-50" action="#" method="get">
+            <div class="input-group">
+              <input class="form-control" type="search" name="q" placeholder="Buscar" aria-label="Buscar">
+              <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"
+                  aria-hidden="true"></i></button>
+            </div>
+          </form>
+          <!-- Enlaces de iniciar sesión y carrito a la derecha -->
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-user"></i>My Account</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i>Cart</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="links-container">
+      <div class="container">
+        <ul class="nav-container-links navbar-nav ms-auto d-flex flex-row">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/books']" href="#">Libros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"> Catalogo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Musica</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"> Contacto</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>

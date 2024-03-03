@@ -1,0 +1,34 @@
+.books-listing{
+    /*     margin: 5rem; */
+        width: 100%;
+    }
+    
+    .books-listing h4{
+        text-align: center;
+    }
+    
+    .grid-container{
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(10rem, 1fr));
+        gap: .5rem;
+        grid-auto-rows: 22rem;
+    }
+    
+    .prod-img{
+        height: 15rem;
+        padding: 0 0.5rem;
+    }
+    
+    .card-titles{
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .cuadrado{
+        width: 30%;
+        height: 15rem;
+        background-color: bisque;
+        margin-bottom: auto;
+    }

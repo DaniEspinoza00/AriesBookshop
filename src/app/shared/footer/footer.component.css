@@ -1,0 +1,31 @@
+.nav-container h5,li {
+    text-align: center;
+}
+
+.nav-container h5{
+    font-weight: bolder;
+}
+
+.iconos-redes-sociales a {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    margin-right: 10px;
+    border: 2px solid #EB5E28;
+    border-radius: 50%;
+    transition: all 0.2s ease-in;
+}
+
+.iconos-redes-sociales i {
+    color: hsla(0, 0%, 100%, .8);
+    font-size: 1.5rem;
+    transition: all 0.2s ease-in;
+}
+
+.iconos-redes-sociales a:hover {
+    background-color: #432f2f;
+    border: 2px solid #432f2f ;
+}

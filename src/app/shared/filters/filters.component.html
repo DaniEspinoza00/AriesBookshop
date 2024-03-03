@@ -1,0 +1,15 @@
+<div class="container mt-5">
+    <h5>Filtrar por precio</h5>
+    <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+    <div class="price-filter container d-flex">
+        <p>Min value: <input type="number" [(ngModel)]="minValue"></p>
+        <p>Max value: <input type="number" [(ngModel)]="maxValue"></p>
+    </div>
+</div>
+
+<!-- <div class="container mt-5">
+    <mat-slider min="200" max="500">
+    <input value="300" matSliderStartThumb>
+    <input value="400" matSliderEndThumb>
+  </mat-slider>
+</div> -->

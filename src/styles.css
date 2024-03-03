@@ -1,1 +1,71 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+    margin: 0;
+}
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+p{
+    font-family: "Rubik", sans-serif;
+}
+
+h1, h2, h3, h4, h5{
+    font-family: "Alef", sans-serif;
+}
+
+.principal{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.footer{
+    margin-top: auto;
+}
+
+/******************/
+
+.product-card-price {
+    transition: 1s;
+  }
+  
+  .product-card-price:hover {
+    transform: scale(1.1);
+  
+  }
+
+  .product {
+    text-decoration: none;
+  }
+
+  .prod-img {
+    width: 180px;
+  }
+
+  .container-details {
+    height: 7rem;
+    width: 180px;
+    overflow: auto;
+    word-wrap: break-word;
+  }
+  
+  .container-details p {
+    font-family: "Rubik", sans-serif;
+    font-weight: bold;
+  
+  }
+
+  .card-titles {
+    color: #EB5E28;
+    text-align: center;
+  }
+  
+  .card-price {
+    color: #000;
+  }
+

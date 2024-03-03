@@ -1,0 +1,23 @@
+<section class="container d-flex flex-row mt-5">
+ <div class="cuadrado">
+    <app-filters></app-filters>
+ </div>
+       
+    
+    <div class="books-listing d-flex flex-column justify-content-center">
+        <h4>Our books</h4>
+        <div class="grid-container justify-content-center">
+                <div class="product-card-price" *ngFor="let item of booksList; let i=index">
+                <a class="product" [routerLink]="['/product',item.id]">
+                    <div class="card-producto d-flex flex-column align-items-center">
+                        <img class="prod-img " [src]="item.image_url" alt="{{item.title}}">
+                        <div class="card-body d-flex flex-column container-details">
+                            <p class="card-titles mb-auto">{{item.title}}</p>
+                            <p class="card-price mt-auto text-center">Precio: $100</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

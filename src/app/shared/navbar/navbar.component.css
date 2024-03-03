@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap');
+
+/* Estilos personalizados para el navbar  */
+.general-container{
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+}
+
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+  color: #333;
+}
+
+.nav-link:hover {
+  color: #007bff;
+}
+
+.input-group {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.form-control {
+  border: none;
+  border-radius: 0;
+}
+
+.btn-outline-secondary {
+  border: none;
+  border-left: 1px solid #ced4da;
+  border-radius: 0 20px 20px 0;
+}
+
+.links-container{
+  background-color: #432f2f;
+}
+
+.nav-container-links li{
+  margin-right: 1rem;
+}
+
+.nav-container-links .nav-item a{
+  color: hsla(0,0%,100%,.8);
+  font-family: "Alef", sans-serif;
+}
+
+.logo {
+  max-width: 100%;
+}
+
+.nav-container-links .nav-item a:hover{
+  color: #ffff
+}
+
+
+@media screen and (max-width:767px) {
+  .links-container{
+    display: none;
+  }
+} 

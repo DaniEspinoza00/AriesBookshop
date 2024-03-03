@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+.recommendations {
+  min-height: 500px;
+  padding: 30px;
+}
+
+.recommendations h2 {
+  font-size: clamp(1.2rem, 0.629rem + 1.524vw, 2rem);
+}
+
+.product {
+  margin: 1rem;
+}
+
+/* .product-card-price {
+  transition: 1s;
+}
+
+.product-card-price:hover {
+  transform: scale(1.1);
+
+} */
+
+
+/*Categories Section*/
+.list-categories h1 {
+  margin: 2rem 0;
+  font-size: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
+  text-align: left;
+}
+
+.container-list {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.list-categories {
+  width: 70%;
+}
+
+.item-category {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  flex: 1;
+}
+
+.container-img {
+  width: 60%;
+  order: 2;
+}
+
+.container-img img {
+  height: 18rem;
+  max-height: 18rem;
+  max-width: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.item-category-resume {
+  width: 40%;
+  order: 1;
+  padding:0 2rem;
+}
+
+.item-category-resume .btn{
+  border: thin solid #EB5E28;
+  color: #000;
+}
+
+.item-category-resume .btn:hover{
+  background-color: #EB5E28;
+  color: #ffff;
+}
+
+.list-categories .item-category:nth-child(2) .item-category-resume,
+.list-categories .item-category:nth-child(4) .item-category-resume {
+  order: 2;
+}
+
+/*media screen*/
+@media screen and (max-width:992px) {
+  .container-products {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .container {
+    width: 100%;
+  }
+  .container h1{
+    text-align: center;
+  }
+}
+
+@media screen and (max-width:486px) {
+  .container-img {
+    width: 90%;
+  }
+
+  .item-category {
+    flex-direction: column;
+  }
+
+  .item-category:nth-child(3),
+  .item-category:nth-child(5) {
+    flex-direction: column-reverse;
+  }
+
+  .item-category-resume{
+    margin: .5rem 0;
+    width: 90%;
+  }
+}
