@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<!-- <div class="filtro container mt-5">
     <h5>Filtrar por precio</h5>
     <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
     <div class="price-filter container d-flex">
@@ -7,9 +7,32 @@
     </div>
 </div>
 
-<!-- <div class="container mt-5">
-    <mat-slider min="200" max="500">
+<div class="container mt-5">
+    <mat-slider min="200" max="500" discrete color="warn">
     <input value="300" matSliderStartThumb>
     <input value="400" matSliderEndThumb>
   </mat-slider>
-</div> -->
+</div>
+ -->
+
+<div class="filters-container ">
+  <div class="select-container">
+    <p>Filter by Genres</p>
+    <select class="select-box" (change)="filter($event)">
+      <option class="select-box-header" value="">
+        <p>Select genre</p>
+      </option>
+      <option class="options" *ngFor="let genre of genreList" [value]="genre">{{ genre }}</option>
+    </select>
+  </div>
+
+  <div class="select-container">
+    <p>Filter by Authors</p>
+    <select class="select-box" (change)="filter($event)">
+      <option class="select-box-header" value="">
+        <p>Select Author</p>
+      </option>
+      <option *ngFor="let author of authorsList" [value]="author">{{ author }}</option>
+    </select>
+  </div>
+</div>
