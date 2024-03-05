@@ -27,7 +27,6 @@ export class CatalogueComponent implements OnInit {
     .subscribe(
       {
         next:(books)=>{
-          console.log(books);
           this.booksList=books;
         },
         error:(error)=>{

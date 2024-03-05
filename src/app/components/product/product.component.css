@@ -1,0 +1,67 @@
+.producto{
+    margin-top: 5rem;
+}
+.producto-row{
+    margin-bottom: 5rem;
+}
+/************************/
+hr{
+    background-color: black;
+    width: 3px;
+    margin: 0;
+}
+.div1 h1,h2,h3,h4,h5{
+    font-family: "Rubik", sans-serif;
+}
+.div1 h1{
+    color: #EB5E28;
+}
+
+.div2{
+    display: flex;
+}
+.div2 a{
+    margin: 0 1rem;
+    text-decoration: none;
+    color: black;
+}
+.div2 a:hover{
+    color: #EB5E28;
+}
+
+.div3 button{
+    width: 40%;
+    margin: 1rem 0;
+    font-weight: 500;
+    border: none;
+}
+
+.div3 button:hover{
+    background-color: #67E685;
+    color: black;
+}
+
+/*****Details******/
+
+.product-description{
+    border-top: 0.1em solid grey;
+    margin-bottom: 2rem;
+}
+
+.descripcion2 p{
+    font-size: .8rem;
+}
+
+
+@media screen and (max-width:767px) {
+    .div3{
+        display: flex;
+        justify-content: center;
+    }
+    .descripcion2 p{
+        display: none;
+    }
+    .img-container img{
+        width: 90%;
+    }
+}

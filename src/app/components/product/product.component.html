@@ -1,0 +1,83 @@
+<div class="producto container">
+    <div class="producto-row row">
+        <div class="detalle col-md-4">
+            <div class="img-container d-flex justify-content-center">
+                <img [src]="book?.image_url" alt="{{book?.title}}">
+            </div>
+        </div>
+        <div class="detalle line d-flex justify-content-center col-md-1">
+            <hr>
+        </div>
+        <div class="detalle col-md-7 d-flex flex-column justify-content-between">
+            <div class="div1 container">
+                <h1>{{book?.title}}</h1>
+                <h5>{{book?.authors}}</h5>
+                <h2>$100</h2>
+            </div>
+            <div class="div2">
+                <a href="">Medios de Pago</a>
+                <a href="">Costos de Envio</a>
+            </div>
+            <div class="div3 container">
+                <button type="button" class="btn btn-secondary">BUY!</button>
+            </div>
+        </div>
+    </div>
+    <div class="product-description-container">
+        <div class="product-description row">
+        <div class="descripcion2 col-md-4">
+            <p>DESCRIPCION</p>
+        </div>
+        <div class="sinopsis col-md-8">
+            <h4>Sinopsis del Libro</h4>
+            <p>{{book?.description}}</p>
+        </div>
+    </div>
+    <div class="product-description row">
+        <div class="descripcion2 col-md-4">
+            <p>AUTOR/ES</p>
+        </div>
+        <div class="sinopsis col-md-8">
+            <h4>Autor</h4>
+            <p>{{book?.authors}}</p>
+        </div>
+    </div>
+    <div class="product-description row">
+        <div class="descripcion2 col-md-4">
+            <p>GENERO</p>
+        </div>
+        <div class="sinopsis col-md-8">
+            <h4>Generos</h4>
+            <p>{{book?.genres}}</p>
+        </div>
+    </div>
+    <div class="product-description row">
+        <div class="descripcion2 col-md-4">
+            <p>CANTIDAD DE PAGINAS</p>
+        </div>
+        <div class="sinopsis col-md-8">
+            <h4>Paginas</h4>
+            <p>{{book?.num_pages}}</p>
+        </div>
+    </div>
+    <div class="product-description row">
+        <div class="descripcion2 col-md-4">
+            <p>EDICIÓN</p>
+        </div>
+        <div class="sinopsis col-md-8">
+            <h4>Edicion</h4>
+            <p>{{book?.edition}}</p>
+        </div>
+    </div>
+    <div class="product-description row">
+        <div class="descripcion2 col-md-4">
+            <p>FORMATO</p>
+        </div>
+        <div class="sinopsis col-md-8">
+            <h4>Formato</h4>
+            <p>{{book?.format}}</p>
+        </div>
+    </div>
+    </div>
+    
+</div>

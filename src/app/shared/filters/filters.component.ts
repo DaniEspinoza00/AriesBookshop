@@ -61,7 +61,6 @@ export class FiltersComponent implements OnInit{
   getAutoresHttp(){
     const authorsArray= this.bookList?.map(book=>book.authors);
     this.authorsList=[... new Set(authorsArray)];
-    console.log(this.authorsList);
   }
 
   
