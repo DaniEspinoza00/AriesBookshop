@@ -18,9 +18,9 @@
 <div class="filters-container ">
   <div class="select-container">
     <p>Filter by Genres</p>
-    <select class="select-box" (change)="filter($event)">
+    <select class="select-box" (change)="filterByGenre($event)">
       <option class="select-box-header" value="">
-        <p>Select genre</p>
+        <p>All genres</p>
       </option>
       <option class="options" *ngFor="let genre of genreList" [value]="genre">{{ genre }}</option>
     </select>
@@ -28,9 +28,9 @@
 
   <div class="select-container">
     <p>Filter by Authors</p>
-    <select class="select-box" (change)="filter($event)">
+    <select class="select-box" (change)="filterByAuthors($event)">
       <option class="select-box-header" value="">
-        <p>Select Author</p>
+        <p>All authors</p>
       </option>
       <option *ngFor="let author of authorsList" [value]="author">{{ author }}</option>
     </select>

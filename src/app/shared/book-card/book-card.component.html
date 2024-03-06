@@ -1,0 +1,10 @@
+<a class="product" [routerLink]="['/product', item.id]">
+    <div class="card-product d-flex flex-column align-items-center">
+      <img class="prod-img" [src]="item.image_url" alt="{{ item.title }}">
+      <div class="card-body d-flex flex-column container-details">
+        <p class="card-titles mb-auto">{{ item.title }}</p>
+        <p class="card-price mt-auto text-center">Precio: $100</p>
+      </div>
+    </div>
+  </a>
+  

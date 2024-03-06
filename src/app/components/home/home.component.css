@@ -1,26 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
-.recommendations {
+.main-section {
   min-height: 500px;
   padding: 30px;
 }
 
-.recommendations h2 {
+.main-section h2 {
   font-size: clamp(1.2rem, 0.629rem + 1.524vw, 2rem);
 }
 
 .product {
   margin: 1rem;
 }
-
-/* .product-card-price {
-  transition: 1s;
-}
-
-.product-card-price:hover {
-  transform: scale(1.1);
-
-} */
 
 
 /*Categories Section*/

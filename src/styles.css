@@ -1,7 +1,8 @@
-body{
+body {
     margin: 0;
 }
-section {
+
+.main-section {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,22 +10,26 @@ section {
 }
 
 
-p{
+p {
     font-family: "Rubik", sans-serif;
 }
 
-h1, h2, h3, h4, h5{
+h1,
+h2,
+h3,
+h4,
+h5 {
     font-family: "Alef", sans-serif;
 }
 
-.principal{
+.principal {
     margin: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-.footer{
+.footer {
     margin-top: auto;
 }
 
@@ -32,41 +37,92 @@ h1, h2, h3, h4, h5{
 
 .product-card-price {
     transition: 1s;
-  }
-  
-  .product-card-price:hover {
+}
+
+.product-card-price:hover {
     transform: scale(1.1);
-  
-  }
 
-  .product {
+}
+
+.product {
     text-decoration: none;
-  }
+}
 
-  .prod-img {
+.prod-img {
     width: 180px;
-  }
+    height: 288px;
+}
 
-  .container-details {
+.container-details {
     height: 7rem;
     width: 180px;
     overflow: auto;
     word-wrap: break-word;
-  }
-  
-  .container-details p {
+}
+
+.container-details p {
     font-family: "Rubik", sans-serif;
     font-weight: bold;
-  
-  }
 
-  .card-titles {
+}
+
+.card-price {
+    color: #000;
+}
+
+
+/*****category, authors and catalogue*****/
+
+.section-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3rem;
+}
+
+.books-listing {
+    width: 100%;
+}
+
+.books-listing h4 {
+    text-align: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    gap: .5rem;
+    grid-auto-rows: 22rem;
+}
+
+.card-product .prod-img {
+    height: 15rem;
+    padding: 0 0.5rem;
+}
+
+.card-titles {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     color: #EB5E28;
     text-align: center;
-  }
-  
-  .card-price {
-    color: #000;
-  }
+}
 
+.filter-container {
+    width: 30%;
+    margin-bottom: auto;
+}
 
+@media screen and (max-width:767px) {
+    .books-listing {
+        margin-top: 5rem;
+    }
+
+    section {
+        flex-direction: column;
+    }
+
+    .filter-container {
+        width: 100%;
+    }
+}

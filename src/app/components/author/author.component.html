@@ -1,0 +1,11 @@
+<section class="section-container container ">
+    <div class="filter-container"> 
+        <app-filters></app-filters>
+    </div>
+    <div class="books-listing d-flex flex-column justify-content-center">
+        <h4>Our books</h4>
+        <div class="grid-container justify-content-center">
+            <app-book-card class="product-card-price" *ngFor="let item of booksList" [item]="item"></app-book-card>
+        </div>
+    </div>
+</section>

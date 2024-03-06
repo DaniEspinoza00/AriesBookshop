@@ -27,14 +27,23 @@ export class FiltersComponent implements OnInit{
     this.getGenres();
   }
 
-  filter(event:Event):void{
+  filterByGenre(event:Event):void{
     const target=event.target as HTMLSelectElement;
     const genre = target.value;
 
     if(genre){
-      this.router.navigate(['/genre',genre]);
+      this.router.navigate(['/category',genre]);
     }
   }
+  filterByAuthors(event:Event):void{
+    const target=event.target as HTMLSelectElement;
+    const author = target.value;
+
+    if(author){
+      this.router.navigate(['/author',author]);
+    }
+  }
+
 
   getGenres(){
     this.BooksApiServiceService.getBooks()
