@@ -113,12 +113,21 @@ h5 {
     margin-bottom: auto;
 }
 
+/*forms*/
+.ng-valid:not(form).ng-touched{
+    border-left: 5px solid #42A948;
+}
+.ng-invalid:not(form).ng-touched{
+    border-left: 5px solid #A94442;
+}
+
+
 @media screen and (max-width:767px) {
     .books-listing {
         margin-top: 5rem;
     }
 
-    section {
+    .section-container {
         flex-direction: column;
     }
 

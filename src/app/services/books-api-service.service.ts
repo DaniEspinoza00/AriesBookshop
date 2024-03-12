@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { book } from '../interfaces/book';
 import { environments } from '../../environments/environments.prod';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +11,31 @@ export class BooksApiServiceService {
 
   bookList:book[]=[];
   urlApi:string=environments.baseUrl;
-  limit:string='books?_limit=100';
+  limit:string='books?_limit=200';
   books:string='books'
 
   constructor(private http:HttpClient) { }
 
   getBooks():Observable<book[]>{
-    return this.http.get<book[]>(`${this.urlApi}/${this.limit}`);
+    return this.http.get<book[]>(`${this.urlApi}/${this.limit}`)
+    .pipe(
+      catchError(this.handlerError)
+    );
   }
 
   getBook(id:number):Observable<book>{
-    return this.http.get<book>(`${this.urlApi}/${this.books}/${id}`);
+    return this.http.get<book>(`${this.urlApi}/${this.books}/${id}`)
+    .pipe(
+      catchError(this.handlerError)
+    );
+  }
+
+  private handlerError(error:HttpErrorResponse){
+    if(error.status===0){
+      console.log('Error detected', error.error);
+    }else{
+      console.log('Backend status code', error.status, error.error);
+    }
+    return throwError(()=> new Error('Something happened, please try again')) ;
   }
 }

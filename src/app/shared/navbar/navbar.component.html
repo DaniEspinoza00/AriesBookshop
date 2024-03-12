@@ -22,9 +22,15 @@
           </form>
           <!-- Enlaces de iniciar sesión y carrito a la derecha -->
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fas fa-user"></i>My Account</a>
+            @if (!userLoginOn) {
+              <li class="nav-item">
+              <a class="nav-link" [routerLink]="['login']"><i class="fas fa-user"></i>Login</a>
             </li>
+            }@else {
+              <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-user"></i>Logout</a>
+            </li>
+            }
             <li class="nav-item">
               <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i>Cart</a>
             </li>

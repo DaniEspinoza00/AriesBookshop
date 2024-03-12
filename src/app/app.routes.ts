@@ -4,6 +4,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { CategoryPageComponent } from './pages/category-page/category-page.component';
 import { AuthorPageComponent } from './pages/author-page/author-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 export const routes: Routes = [
     {path:'home', component:HomePageComponent},
@@ -11,5 +12,6 @@ export const routes: Routes = [
     {path:'product/:id', component:ProductPageComponent},
     {path:'category/:genre', component:CategoryPageComponent},
     {path:'author/:author', component:AuthorPageComponent},
+    {path:'login', component:LoginPageComponent},
     {path:'**', redirectTo:"home"}
 ];
