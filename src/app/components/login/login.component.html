@@ -1,30 +1,73 @@
 <section class="main-section">
-    <h2>login component
-    </h2>
-    <div class="container">
-        @if(!userLoginOn){
-        <form [formGroup]="loginForm">
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
-                    aria-describedby="emailHelp">
-                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
-                    <div *ngIf="email.errors?.['required']">Email is required.</div>
-                    <div *ngIf="email.errors?.['email']">Invalid email format.</div>
+    <h2>login component</h2>
+    <div class="login-signup-container container d-flex justify-content-between mt-5">
+        <div class="log-in">
+            @if(!userLoginOn){
+            <form [formGroup]="loginForm">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp">
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                        <div *ngIf="email.errors?.['required']">Email is required.</div>
+                        <div *ngIf="email.errors?.['email']">Invalid email format.</div>
+                    </div>
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
-                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
-                    <div *ngIf="password.errors?.['required']">Password is required.</div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+                    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+                        <div *ngIf="password.errors?.['required']">Password is required.</div>
+                    </div>
                 </div>
-            </div>
-            <button type="submit" (click)="login()" class="btn btn-primary">Submit</button>
-        </form>
-        }@else {
-        <p>usuario autenticado</p> <!-- registro -->
-        }
+                <button type="submit" (click)="login()" class="btn btn-primary">Submit</button>
+            </form>
+            }@else {
+            <p>aca va la cuenta</p> <!-- registro -->
+            }
+        </div>
+
+
+
+        <div class="sign-up"> <!-- VER ERRORES DE MENSAJES MAS TARDE -->
+            <form class="row g-3 needs-validation" [formGroup]="signupForm" novalidate>
+                <div class="col-md-5">
+                    <label for="firstname" class="form-label">First name</label>
+                    <input type="text" formControlName="firstname" class="form-control" id="firstname">
+                </div>
+                <div class="col-md-5">
+                    <label for="lastname" class="form-label">Last name</label>
+                    <input type="text" formControlName="lastname" class="form-control" id="lastname">
+                </div>
+                <div class="col-md-10">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" formControlName="username" class="form-control" id="username">
+                </div>
+                <div class="col-md-10">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" formControlName="email" class="form-control" id="email">
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                        <div *ngIf="email.errors?.['required']">Email is required.</div>
+                        <div *ngIf="email.errors?.['email']">Invalid email format.</div>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <label for="phonenumber" class="form-label">Phone Number</label>
+                    <input type="text" formControlName="phonenumber" class="form-control" id="phonenumber">
+                </div>
+                <div class="col-md-5">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" formControlName="password" class="form-control" id="password">
+                </div>
+                <div class="col-md-5">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPassword">
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" (click)="signup()" type="submit">Submit form</button>
+                </div>
+            </form>
+        </div>
     </div>
 </section>

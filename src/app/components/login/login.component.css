@@ -1,0 +1,30 @@
+.form-control {
+	height: 41px;
+	background: #f2f2f2;
+	box-shadow: none !important;
+	border: none;
+}
+.form-control:focus {
+	background: #e2e2e2;
+}
+.form-control, .btn {        
+	border-radius: 3px;
+}
+
+.sign-up{
+    width: 50%;
+}
+
+.log-in, .sign-up{
+    padding: 30px;
+}
+
+@media screen and (max-width:991px) {
+    .login-signup-container{
+        flex-direction: column;
+    }
+
+    .sign-up{
+        width: 100%;
+    }
+}

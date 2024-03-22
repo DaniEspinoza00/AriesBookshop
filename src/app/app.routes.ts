@@ -5,6 +5,7 @@ import { ProductPageComponent } from './pages/product-page/product-page.componen
 import { CategoryPageComponent } from './pages/category-page/category-page.component';
 import { AuthorPageComponent } from './pages/author-page/author-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { UserDetailsPageComponent } from './pages/user-details-page/user-details-page.component';
 
 export const routes: Routes = [
     {path:'home', component:HomePageComponent},
@@ -13,5 +14,6 @@ export const routes: Routes = [
     {path:'category/:genre', component:CategoryPageComponent},
     {path:'author/:author', component:AuthorPageComponent},
     {path:'login', component:LoginPageComponent},
+    {path:'profile', component:UserDetailsPageComponent},
     {path:'**', redirectTo:"home"}
 ];
