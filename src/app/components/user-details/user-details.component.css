@@ -1,0 +1,29 @@
+/*  .watermark-background {
+    background-image: url(src../assets/images/logo.png); 
+    background-repeat: repeat; 
+    opacity: 0.5; 
+}  */
+
+a{
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.user-details-navbar{
+    width: 50%;
+}
+.user-details-navbar p{
+    margin-top: 1rem;
+    color: #212121;
+}
+a:hover{
+    border-left: 5px solid #432f2f;
+    transition: 0.3s;
+}
+
+a:hover p{
+    margin-left: .5rem;
+    font-weight: bolder;
+    color:#000;
+}

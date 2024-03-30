@@ -3,7 +3,7 @@
       <div class="container">
         <!-- Logo al costado izquierdo -->
         <a class="navbar-brand" [routerLink]="['/home']" href="#">
-          <img class="logo" src="./assets/images/Screenshot 2024-02-19 160010.png" alt="" height="30">
+          <img class="logo" src="./assets/images/logo.png" alt="" height="30">
         </a>
         <!-- Botón para colapsar el navbar en dispositivos pequeños -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -28,7 +28,7 @@
             </li>
             }@else {
               <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fas fa-user"></i>Logout</a>
+              <a class="nav-link" [routerLink]="['profile']"><i class="fas fa-user"></i>Account</a>
             </li>
             }
             <li class="nav-item">

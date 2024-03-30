@@ -3,69 +3,79 @@
     <div class="login-signup-container container d-flex justify-content-between mt-5">
         <div class="log-in">
             @if(!userLoginOn){
-            <form [formGroup]="loginForm">
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <p class="text-danger">{{loginError}}</p>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
-                        aria-describedby="emailHelp">
-                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                    <input formControlName="username" type="text" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" required>
+                     <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
                         <div *ngIf="email.errors?.['required']">Email is required.</div>
                         <div *ngIf="email.errors?.['email']">Invalid email format.</div>
-                    </div>
+                    </div> 
                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
-                    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+                    <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" required>
+                     <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
                         <div *ngIf="password.errors?.['required']">Password is required.</div>
                     </div>
                 </div>
-                <button type="submit" (click)="login()" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Login</button>
             </form>
             }@else {
-            <p>aca va la cuenta</p> <!-- registro -->
+            <p>aca va la cuenta</p> 
             }
         </div>
 
 
 
-        <div class="sign-up"> <!-- VER ERRORES DE MENSAJES MAS TARDE -->
-            <form class="row g-3 needs-validation" [formGroup]="signupForm" novalidate>
+         <div class="sign-up"> 
+            <form class="row g-3 needs-validation" [formGroup]="sign" novalidate>
                 <div class="col-md-5">
                     <label for="firstname" class="form-label">First name</label>
                     <input type="text" formControlName="firstname" class="form-control" id="firstname">
+                    <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)" class="text-danger">
+                        <div *ngIf="firstname.errors?.['required']">Firstname is required.</div>
+                    </div>
                 </div>
                 <div class="col-md-5">
                     <label for="lastname" class="form-label">Last name</label>
                     <input type="text" formControlName="lastname" class="form-control" id="lastname">
-                </div>
-                <div class="col-md-10">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" formControlName="username" class="form-control" id="username">
-                </div>
-                <div class="col-md-10">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="text" formControlName="email" class="form-control" id="email">
-                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
-                        <div *ngIf="email.errors?.['required']">Email is required.</div>
-                        <div *ngIf="email.errors?.['email']">Invalid email format.</div>
+                    <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="text-danger">
+                        <div *ngIf="lastname.errors?.['required']">Lastname is required.</div>
                     </div>
                 </div>
                 <div class="col-md-10">
-                    <label for="phonenumber" class="form-label">Phone Number</label>
-                    <input type="text" formControlName="phonenumber" class="form-control" id="phonenumber">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" formControlName="country" class="form-control" id="country">
+                    <div *ngIf="country.invalid && (country.dirty || country.touched)" class="text-danger">
+                        <div *ngIf="country.errors?.['required']">Country is required.</div>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <label for="username2" class="form-label">Username</label><!-- email -->
+                    <input type="text" formControlName="username2" class="form-control" id="username2">
+                     <div *ngIf="username2.invalid && (username2.dirty || username2.touched)" class="text-danger">
+                        <div *ngIf="username2.errors?.['required']">Email is required.</div>
+                        <div *ngIf="username2.errors?.['email']">Invalid email format.</div>
+                    </div>
                 </div>
                 <div class="col-md-5">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" formControlName="password" class="form-control" id="password">
+                    <label for="password2" class="form-label">Password</label>
+                    <input type="password" formControlName="password2" class="form-control" id="password2">
+                    <div *ngIf="password2.invalid && (password2.dirty || password2.touched)" class="text-danger">
+                        <div *ngIf="password2.errors?.['required']">Password is required.</div>
+                    </div> 
                 </div>
                 <div class="col-md-5">
                     <label for="confirmPassword" class="form-label">Confirm Password</label>
                     <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPassword">
+                    
                 </div>
                 <div class="col-12">
-                    <button class="btn btn-primary" (click)="signup()" type="submit">Submit form</button>
+                    <button class="btn btn-primary" (click)="signup()" type="submit">Create account</button>
                 </div>
             </form>
         </div>

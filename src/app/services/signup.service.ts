@@ -1,6 +1,7 @@
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { environments } from '../../environments/environments.prod';
+import { environments } from '../../environments/environments';
 import { User } from '../interfaces/user';
 
 @Injectable({
@@ -8,11 +9,9 @@ import { User } from '../interfaces/user';
 })
 export class SignUpService {
 
-  private httpClient=inject(HttpClient);
+  constructor(private httpClient: HttpClient) { }
 
-  constructor() { }
-
-  public postUser(user:User){
-    return this.httpClient.post(`${environments.usersUrl}/user/`,user);
+  public añadirUsuario(user:any):Observable<any>{
+    return this.httpClient.post<any>(environments.urlHost+"auth/register",user);
   }
 }
