@@ -27,21 +27,6 @@ export class CatalogueComponent implements OnInit {
   ngOnInit(): void {
     this.showBooks();
   }
-
-  /* showBooks(){
-    this.BooksApiServiceService.getBooks()
-    .subscribe(
-      {
-        next:(books)=>{
-          this.booksList=books;
-        },
-        error:(error)=>{
-          console.log(error);
-        }
-      }
-    )
-  } */
-
   showBooks(){
     forkJoin({
       books: this.BooksApiServiceService.getBooks(),
@@ -57,20 +42,5 @@ export class CatalogueComponent implements OnInit {
         console.log(error);
       }
     });
-  }
-
-
-  showBookStock(){
-    this.BooklistService.getBookListkHttp().subscribe(
-      {
-        next:(books)=>{
-          this.booksArray=books;
-        },
-        error:(error)=>{
-          console.log(error);
-        }
-      }
-
-    )
   }
 }

@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { book } from '../interfaces/book';
 import { environments } from '../../environments/environments';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,12 @@ export class BooksApiServiceService {
     return this.http.get<book>(`${this.urlApi}/${this.books}/${id}`)
     .pipe(
       catchError(this.handlerError)
+    );
+  }
+
+  getBooksByAuthor(author: string): Observable<book[]> {
+    return this.getBooks().pipe(
+      map(books => books.filter(book => book.authors.toLowerCase().includes(author.toLowerCase())))
     );
   }
 

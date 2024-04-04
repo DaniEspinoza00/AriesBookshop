@@ -1,3 +1,4 @@
+import { CartService } from './../../services/cart.service';
 import { BooklistService } from './../../services/booklist.service';
 import { Booklist } from './../../interfaces/book-list';
 import { Component, OnInit, inject } from '@angular/core';
@@ -5,6 +6,7 @@ import { book } from '../../interfaces/book';
 import { BooksApiServiceService } from '../../services/books-api-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Product } from '../../interfaces/product';
 
 @Component({
   selector: 'app-product',
@@ -21,6 +23,7 @@ export class ProductComponent implements OnInit {
   private BooksApiServiceService= inject (BooksApiServiceService);
   private route=inject(ActivatedRoute);
   private BooklistService=inject(BooklistService);
+  private CartService=inject(CartService);
   /* private location=inject(Location); //para el modal */
 
   ngOnInit(): void {
@@ -46,5 +49,20 @@ export class ProductComponent implements OnInit {
         }
       )
     })
+  }
+
+  addToCart(book:book, price:number){
+    const product:Product={
+      id:book.id,
+      image_url:book.image_url,
+      title:book.title,
+      authors:book.authors,
+      edition:book.edition,
+      price:price,
+      quantity:1,
+    }
+    
+    console.log(product);
+    this.CartService.addNewProduct(product);
   }
 }

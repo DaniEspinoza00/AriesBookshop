@@ -5,6 +5,9 @@ import { book } from '../../interfaces/book';
 import { NgFor } from '@angular/common';
 import { FiltersComponent } from '../../shared/filters/filters.component';
 import { BookCardComponent } from '../../shared/book-card/book-card.component';
+import { forkJoin, map } from 'rxjs';
+import { BooklistService } from '../../services/booklist.service';
+import { Booklist } from '../../interfaces/book-list';
 
 @Component({
   selector: 'app-author',
@@ -16,22 +19,24 @@ import { BookCardComponent } from '../../shared/book-card/book-card.component';
 export class AuthorComponent implements OnInit{
 
   booksList:book[]=[];
+  booksArray:Booklist[]|undefined=[];
   private route=inject(ActivatedRoute)
   private BooksApiServiceService=inject(BooksApiServiceService);
+  private BooklistService= inject (BooklistService);
 
   ngOnInit(): void {
     this.mostrarLibrosPorAutores(); 
    }
  
    mostrarLibrosPorAutores(){
-     this.route.params.subscribe(async param =>{
+     this.route.params.subscribe(param =>{
        const author:string=param['author']
        this.filtrarLibrosHttp(author);
      })
    }
  
-   filtrarLibrosHttp(author: string){
-     this.BooksApiServiceService.getBooks()
+   filtrarLibrosHttp(author: string){//aca deberiamos hacer el forkJoin()
+/*       this.BooksApiServiceService.getBooks()
      .subscribe(
        {
          next:(books)=>{
@@ -42,14 +47,28 @@ export class AuthorComponent implements OnInit{
            this.booksList = books.filter(book => {
              return book.authors.trim() === author.trim();
            });
-           /* this.stockID = [];
-           this.mostrarPrecioIDstockHttp(this.listadoLibrosFiltrados); */
          },
          error: (error)=>{
            console.log(error);
          }
        }
-     )
+     )  */
+    forkJoin({
+      books:this.BooksApiServiceService.getBooks(),
+      bookLists: this.BooklistService.getBookListkHttp()
+    }).subscribe({
+      next:({books, bookLists})=>{
+        this.booksList = books.filter(book => {
+          return book.authors.trim() === author.trim();
+        });
+      },
+      error:(error)=>{
+        console.log(error);
+      }
+    })
+     
    }
+
+
 
 }

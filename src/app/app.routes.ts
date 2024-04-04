@@ -6,6 +6,7 @@ import { CategoryPageComponent } from './pages/category-page/category-page.compo
 import { AuthorPageComponent } from './pages/author-page/author-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { UserDetailsPageComponent } from './pages/user-details-page/user-details-page.component';
+import { CartPageComponent } from './pages/cart-page/cart-page.component';
 
 export const routes: Routes = [
     {path:'home', component:HomePageComponent},
@@ -15,5 +16,6 @@ export const routes: Routes = [
     {path:'author/:author', component:AuthorPageComponent},
     {path:'login', component:LoginPageComponent},
     {path:'profile', component:UserDetailsPageComponent},
+    {path:'profile/cart', component:CartPageComponent},
     {path:'**', redirectTo:"home"}
 ];

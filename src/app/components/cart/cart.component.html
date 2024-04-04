@@ -1,0 +1,33 @@
+<div class="container mt-5">
+    <h1>Cart Items</h1>
+    <p style="font-weight: bold;">Total: ${{total| number:'1.2-2'}}</p>
+
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col"><p>Book</p></th>
+            <th scope="col"><p>Description</p></th>
+            <th style="text-align: center;" scope="col"><p>Quantity</p></th>
+            <th scope="col"><p>Price</p></th>
+            <th style="text-align: center;" scope="col"><p>Subtotal</p></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of productList">
+            <th scope="row"><a [routerLink]="['/product', item.id]"><img style="width: 60px;" [src]="item?.image_url" alt="{{item?.title}}"></a></th>
+            <td><p>{{item.title}}</p>
+                <p>{{item.authors}}</p></td>
+            <td>
+                <div class="input-group w-auto justify-content-center align-items-center mb-3">
+                    <input type="button" (click)="eliminateItem(item)" value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " data-field="quantity">
+                    <input type="text" value="{{item.quantity}}" name="quantity" class="quantity-field border-0 text-center w-25">
+                    <input type="button" (click)="addItem(item)" value="+" class="button-plus border rounded-circle icon-shape icon-sm " data-field="quantity">
+                 </div>
+            </td>
+            <td><p>{{item.price | number:'1.2-2'}}</p></td>
+            <td style="text-align: center;"><p>{{item.subtotal | number:'1.2-2'}}</p></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
