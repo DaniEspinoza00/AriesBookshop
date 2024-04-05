@@ -12,63 +12,66 @@ import { Booklist } from '../../interfaces/book-list';
 @Component({
   selector: 'app-author',
   standalone: true,
-  imports: [FiltersComponent,RouterModule,NgFor,BookCardComponent],
+  imports: [FiltersComponent, RouterModule, NgFor, BookCardComponent],
   templateUrl: './author.component.html',
   styleUrl: './author.component.css'
 })
-export class AuthorComponent implements OnInit{
+export class AuthorComponent implements OnInit {
 
-  booksList:book[]=[];
-  booksArray:Booklist[]|undefined=[];
-  private route=inject(ActivatedRoute)
-  private BooksApiServiceService=inject(BooksApiServiceService);
-  private BooklistService= inject (BooklistService);
+  booksList: book[] = [];
+  booksArray: Booklist[] | undefined = [];
+  private route = inject(ActivatedRoute)
+  private BooksApiServiceService = inject(BooksApiServiceService);
+  private BooklistService = inject(BooklistService);
 
   ngOnInit(): void {
-    this.mostrarLibrosPorAutores(); 
-   }
- 
-   mostrarLibrosPorAutores(){
-     this.route.params.subscribe(param =>{
-       const author:string=param['author']
-       this.filtrarLibrosHttp(author);
-     })
-   }
- 
-   filtrarLibrosHttp(author: string){//aca deberiamos hacer el forkJoin()
-/*       this.BooksApiServiceService.getBooks()
-     .subscribe(
-       {
-         next:(books)=>{
-           if (books === undefined) {
-             console.log('No se pudieron obtener los libros.');
-             return;
-           }
-           this.booksList = books.filter(book => {
-             return book.authors.trim() === author.trim();
-           });
-         },
-         error: (error)=>{
-           console.log(error);
-         }
-       }
-     )  */
-    forkJoin({
-      books:this.BooksApiServiceService.getBooks(),
-      bookLists: this.BooklistService.getBookListkHttp()
-    }).subscribe({
-      next:({books, bookLists})=>{
-        this.booksList = books.filter(book => {
-          return book.authors.trim() === author.trim();
-        });
-      },
-      error:(error)=>{
-        console.log(error);
-      }
+    this.mostrarLibrosPorAutores();
+  }
+
+  mostrarLibrosPorAutores() {
+    this.route.params.subscribe(param => {
+      const author: string = param['author']
+      this.filtrarLibrosHttp(author);
     })
-     
-   }
+  }
 
+  filtrarLibrosHttp(author:string){
+    this.BooksApiServiceService.getBooksByAuthor(author).subscribe(
+      {
+        next:(bookList)=>{
+          this.booksList=bookList;
+          this.filtrarStockHttp();
+        },
+        error:(error)=>{
+          console.log(error);
+        }
+      }
+    )
+  }
 
+  filtrarStockHttp(){
+    if (this.booksList.length > 0) {
+      forkJoin(this.booksList.map(book => this.BooklistService.getBookStockPrice(book.id))).subscribe(
+        {
+          next:(results)=>{
+            this.booksArray = results;
+            this.combineBookInfo();
+          },
+          error:(error)=>{
+            console.log(error);
+          }
+        }
+      )
+    }
+  }
+  
+  combineBookInfo() {
+    // Asumiendo que booksArray y booksList están en el mismo orden y tienen la misma longitud
+    this.booksList = this.booksList.map((book, index) => ({
+      ...book,
+      booklist: this.booksArray ? this.booksArray[index] : undefined
+    }));
+  }
+  
 
 }
