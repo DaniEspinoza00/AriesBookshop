@@ -7,7 +7,7 @@ import { Observable, catchError, map, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class BooksApiServiceService {
+export class BooksApiServiceService {//para la api publica
 
   bookList:book[]=[];
   urlApi:string=environments.baseUrl;
@@ -36,6 +36,16 @@ export class BooksApiServiceService {
     );
   }
 
+  getBooksByGenre(genre: string): Observable<book[]> {
+    return this.getBooks().pipe(
+      map(books => {
+        return books.filter(book => {
+          const genres = book.genres.split(',').map(g => g.trim().toLowerCase());
+          return genres.includes(genre.toLowerCase());
+        });
+      })
+    );
+  }
   
 
   private handlerError(error:HttpErrorResponse){

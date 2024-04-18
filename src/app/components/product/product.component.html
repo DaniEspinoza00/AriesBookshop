@@ -18,8 +18,16 @@
                 <a href="">Medios de Pago</a>
                 <a href="">Costos de Envio</a>
             </div>
-            <div class="div3 container">
+            <div class="div3 container d-flex flex-column">
                 <button type="button" (click)="addToCart(book!, booklistItem!.price)" class="btn btn-secondary">ADD TO CART</button>
+                @if (!isBookFaved) {
+                    <button type="button" (click)="addToFavs(book!.id)" class="btn btn-secondary">ADD TO FAVORITES</button>
+                }
+                @else {
+                   <button type="button" (click)="removeFavs()" class="btn btn-secondary">REMOVE FROM FAVORITES</button> 
+                }
+                
+                
             </div>
         </div>
     </div>

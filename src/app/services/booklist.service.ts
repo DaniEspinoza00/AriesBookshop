@@ -8,7 +8,7 @@ import { environments } from '../../environments/environments';
 @Injectable({
   providedIn: 'root'
 })
-export class BooklistService {
+export class BooklistService {//para precio y stock
 
   Booklist:Booklist[]|undefined=[];
 

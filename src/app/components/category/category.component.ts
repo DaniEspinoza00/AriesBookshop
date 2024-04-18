@@ -6,6 +6,9 @@ import { book } from '../../interfaces/book';
 import { FiltersComponent } from '../../shared/filters/filters.component';
 import { NgFor } from '@angular/common';
 import { BookCardComponent } from '../../shared/book-card/book-card.component';
+import { forkJoin } from 'rxjs';
+import { BooklistService } from '../../services/booklist.service';
+import { Booklist } from '../../interfaces/book-list';
 
 @Component({
   selector: 'app-category',
@@ -17,8 +20,10 @@ import { BookCardComponent } from '../../shared/book-card/book-card.component';
 export class CategoryComponent implements OnInit{
 
   booksList:book[]=[];
+  booksArray: Booklist[] | undefined = [];
   private route=inject(ActivatedRoute)
   private BooksApiServiceService=inject(BooksApiServiceService);
+  private BooklistService = inject(BooklistService);
 
   ngOnInit(): void {
     this.mostrarLibrosPorCategoria();
@@ -32,29 +37,41 @@ export class CategoryComponent implements OnInit{
     })
   }
 
-  filtrarLibrosHttp(genre: string) {
-    this.BooksApiServiceService.getBooks()
-      .subscribe(
-        {
-          next: (books) => {
-            const bookList = books;
+  filtrarLibrosHttp(genre:string){
+    this.BooksApiServiceService.getBooksByGenre(genre).subscribe(
+      {
+        next:(bookList)=>{
+          this.booksList=bookList;
+          this.filtrarStockHttp();
+        },
+        error:(error)=>{
+          console.log(error);
+        }
+      }
+    )
+  }
 
-            if (bookList === undefined) {
-              console.log('No se pudieron obtener los libros.');
-              return;
-            }
-            this.booksList = bookList.filter(book => {
-              const booksGenre = book.genres.split(',').map(genre => genre.trim());
-              return booksGenre.includes(genre);
-            });
-            /* this.stockID = [];
-            this.mostrarPrecioIDstockHttp(this.listadoLibrosFiltrados) */
+  filtrarStockHttp(){
+    if (this.booksList.length > 0) {
+      forkJoin(this.booksList.map(book => this.BooklistService.getBookStockPrice(book.id))).subscribe(
+        {
+          next:(results)=>{
+            this.booksArray = results;
+            this.combineBookInfo();
           },
-          error: (error) => {
+          error:(error)=>{
             console.log(error);
           }
         }
       )
+    }
   }
 
+  combineBookInfo() {
+    // Asumiendo que booksArray y booksList están en el mismo orden y tienen la misma longitud
+    this.booksList = this.booksList.map((book, index) => ({
+      ...book,
+      booklist: this.booksArray ? this.booksArray[index] : undefined
+    }));
+  }
 }

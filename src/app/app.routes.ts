@@ -7,6 +7,8 @@ import { AuthorPageComponent } from './pages/author-page/author-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { UserDetailsPageComponent } from './pages/user-details-page/user-details-page.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
+import { FavoritesPageComponent } from './pages/favorites-page/favorites-page.component';
+import { PruebaComponent } from './components/prueba/prueba.component';
 
 export const routes: Routes = [
     {path:'home', component:HomePageComponent},
@@ -17,5 +19,7 @@ export const routes: Routes = [
     {path:'login', component:LoginPageComponent},
     {path:'profile', component:UserDetailsPageComponent},
     {path:'profile/cart', component:CartPageComponent},
+    {path:'profile/favorites', component:FavoritesPageComponent},
+    {path:'prueba', component:PruebaComponent},
     {path:'**', redirectTo:"home"}
 ];

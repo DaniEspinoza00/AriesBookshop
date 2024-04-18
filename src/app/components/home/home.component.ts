@@ -36,12 +36,9 @@ export class HomeComponent implements OnInit {
             this.numeros.push (Math.floor(Math.random()*books.length));
           }
           this.numeros.sort((a,b)=> a-b);
-          console.log(this.numeros);
-
           this.listPriceStock(this.numeros)
 
           this.booksArray = books.filter(book => this.numeros.includes(book.id));
-          console.log(this.booksArray);
         },
         error:(error)=>{
           console.log(error);
@@ -56,7 +53,6 @@ export class HomeComponent implements OnInit {
       {
         next:(list)=>{
           this.bookList=list.filter(book=>numberList.includes(book.id));
-          console.log(this.bookList);
         },
         error:(error)=>{
           console.log(error);
