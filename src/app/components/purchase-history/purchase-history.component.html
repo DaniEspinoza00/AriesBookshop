@@ -1,0 +1,44 @@
+<div class="container mt-5 mb-5">
+  <h2>Purchase History</h2>
+  <p class="user-data">{{userData?.firstname}} {{userData?.lastname}}</p>
+  <p class="user-data">{{userData?.username}}</p>
+    <div class=" purchase mt-5 mb-5"
+      *ngFor="let batch of groupedPurchase; let i = index">
+
+      <div class="date d-flex flex-column">
+        <p>ID Sale: {{ batch[0].batchId }}</p>
+        <p>Date: {{ batch[0].date }}</p>
+      </div>
+
+      <div class="purchase-header row" style="border-bottom: 5px solid #fff;">
+          <div class="purchase-header-title col-sm-2"><p>Book</p></div>
+          <div class="purchase-header-title col-sm-6"><p>Description</p></div>
+          <div class="purchase-header-title col-sm-2"><p>Quantity</p></div>
+          <div class="purchase-header-title col-sm-2"><p>Subtotal</p></div>
+        </div>
+
+      <div class="purchase-container row d-flex" style=" background-color: white;"
+        *ngFor="let item of batch; let j=index">
+        
+        <div class="col-sm-2">
+          <img style="max-width: 60px;" [src]="item?.image_url" alt="{{item?.title}}">
+        </div>
+
+        <div class="col-sm-6">
+          <p> {{item.title}}</p>
+          <p> {{item.authors}}</p>
+        </div>
+
+        <div class="col-sm-2" style="text-align: center;">
+          <p> {{item.quantity}}</p>
+        </div>
+
+        <div class="col-sm-2" style="text-align: center;">
+          <p> $ {{item.subtotal | number:'1.2-2'}}</p>
+        </div>
+      </div>
+      <div class="total d-flex flex-row-reverse"><p>TOTAL: ${{groupedSubtotal[i] | number:'1.2-2'}}</p></div>
+    </div>
+
+
+</div>

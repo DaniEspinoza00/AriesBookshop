@@ -64,5 +64,10 @@ export class CartService {
     }
   }
 
-  //ahora falta eliminar un producto cuando se ponga - y si es 0, eliminarlo del listado.
+  cleanProducts(){
+    localStorage.removeItem("Cart");
+    this.cartProducts=[];
+    this.product.next([]);
+  }
+
 }

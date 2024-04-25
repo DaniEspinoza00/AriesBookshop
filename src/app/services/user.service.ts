@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, of, throwError } from 'rxjs';
 import { User } from '../interfaces/user';
 import { environments } from '../../environments/environments';
 
@@ -22,6 +22,15 @@ export class UserService {
     return this.http.put(environments.urlApi+"user", userRequest).pipe(
       catchError(this.handleError)
     )
+  }
+
+
+  checkStatusAuthentication():Observable<boolean>{
+    const token = sessionStorage.getItem('userId');
+    if(!token){
+      return of (false);
+    }
+    return of (true);
   }
 
   private handleError(error:HttpErrorResponse){

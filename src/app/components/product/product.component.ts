@@ -98,8 +98,6 @@ export class ProductComponent implements OnInit {
       price: price,
       quantity: 1,
     }
-
-    console.log(product);
     this.CartService.addNewProduct(product);
   }
 

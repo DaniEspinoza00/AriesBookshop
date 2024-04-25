@@ -24,8 +24,6 @@ export class LoginService {
   login(credentials:LoginRequest):Observable<any>{
     return this.http.post<any>(environments.urlHost+"auth/login",credentials).pipe(
       tap( (userData) => {
-        console.log(userData.token);
-        console.log(userData.user.id);
         sessionStorage.setItem("token", userData.token);
         this.currentUserData.next(userData.token);
         this.currentUserLoginOn.next(true);
@@ -40,6 +38,7 @@ export class LoginService {
   logout():void{
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("userId");
+    this.userId.next(0);
     this.currentUserLoginOn.next(false);
   }
 

@@ -9,12 +9,12 @@
                 <a [routerLink]="['/profile/favorites']">
                     <p>Favorite Books</p>
                 </a>
-                <a href="">
+                <a [routerLink]="['/profile/purchase-history']">
                     <p>Purchase History</p>
                 </a>
-                <a style="cursor: pointer;" id="editUser">
+                <a style="cursor: pointer;" id="editUser" (click)="enableEditMode()">
                     <p>Edit User</p>
-                </a>
+                  </a>
                 <a [routerLink]="['home']" (click)="logout()">
                     <p>Logout</p>
                 </a>
@@ -40,11 +40,8 @@
                     <label for="country" class="form-label">Country</label>
                     <input type="text" formControlName="country" class="form-control" id="country" readonly>
                 </div>
-                <!-- necesito un espacio para la tarjeta -->
                  <div class="col-12">
-            <button class="btn btn-primary" style="display: block;" id="saveChanges" style="display: none;" type="submit">Save Changes</button>
-            <!--<button class="btn btn-primary" style="display: block;" (click)="logout()" type="submit">Purchase History</button>
-            <button class="btn btn-primary" style="display: block;" (click)="logout()" type="submit">Edit User</button>-->
+                    <button class="btn btn-primary" style="display: none;" id="saveChanges" type="submit">Save Changes</button>
         </div> 
             </form>
         </div>
