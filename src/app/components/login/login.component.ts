@@ -132,6 +132,7 @@ login(){
     if (this.sign.invalid) {
       this.signupForm.markAllAsTouched(); //esto muestra todo con verde y rojo segun
       alert("Error al ingresar los datos");
+      return;
     }
     const user: RegisterRequest = {
       username: this.sign.value.username2 as string,
@@ -141,7 +142,7 @@ login(){
       country: this.sign.value.country as string,
     }
     console.log(user);
-    /* this.signupService.añadirUsuario(user).subscribe(
+    this.signupService.añadirUsuario(user).subscribe(
       {
         next: () => {
           alert("Se ha agregado tu usuario");
@@ -151,6 +152,6 @@ login(){
           console.log(error);
         }
       }
-    ) */
+    )
   }
 } 

@@ -42,10 +42,15 @@ a{
     color: black;
 }
 
+
 .shopping-detail p{
     font-size: .9rem;
     color: grey;
     margin-bottom: 0;
+}
+
+.input-error{
+    font-size: .8rem;
 }
 
 /****modal****/
@@ -68,23 +73,52 @@ background: linear-gradient(153deg, rgba(250,250,250,1) 43%, rgba(74,53,53,1) 93
 
 /*********No items in cart*********/
 
-.no-items-in-cart svg{
+.no-items svg{
     width: 100px;
     height: 100px;
     margin-bottom: 3rem;
 }
-.no-items-in-cart a{
+.no-items a{
     padding: 10px;
-
     border-radius: 15px;
     background-color: #432f2f;
     font-family: "Alef", sans-serif;
 }
 
-.no-items-in-cart a{
+.no-items a{
     color: hsla(0, 0%, 100%, .8);
 }
 
-.no-items-in-cart a:hover{
+.no-items a:hover{
     color: #fff;
+}
+
+@media screen and (max-width:575px) {
+    .header-item:nth-child(1),
+    .row-item:nth-child(1){
+        display: none;
+    }
+    .table p{
+        font-size: .8rem;
+    }
+
+    .date-cvv{
+        flex-direction: column;
+    }
+
+    .date{
+        width: 50%;
+    }
+
+    .cvv{
+        width: 30%;
+    }
+}
+
+@media screen and (max-width:400px){
+    .button-minus,
+    .button-plus{
+        width: 1.5rem;
+        height: 1.5rem;
+    }
 }

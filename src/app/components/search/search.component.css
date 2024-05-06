@@ -17,9 +17,3 @@
 .no-items a:hover{
     color: #fff;
 }
-
-@media screen and (max-width:400px) {
-    .table p {
-        font-size: .9rem;
-    }
-}

@@ -52,6 +52,13 @@
     color: #fff;
 }
 
+
+.title,
+.quantity,
+.subtotal{
+    font-weight: 600;
+}
+
 .total{
     padding-right: 1rem;
     background-color: #c7c7c7;
@@ -61,4 +68,42 @@
 .total p{
     color: #fff;
     font-weight: bold;
+}
+
+/****else****/
+
+.no-items svg{
+    width: 100px;
+    height: 100px;
+    margin-bottom: 3rem;
+}
+.no-items a{
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #432f2f;
+    font-family: "Alef", sans-serif;
+}
+
+.no-items a{
+    color: hsla(0, 0%, 100%, .8);
+}
+
+.no-items a:hover{
+    color: #fff;
+}
+
+@media screen and (max-width:575px) {
+    .purchase-header-title:nth-child(1),
+    .purchase-container-book-image{
+        display: none;
+    }
+    .total{
+        justify-content: center;
+    }
+}
+@media screen and (max-width:400px) {
+    .purchase-header-title p,
+    .purchase-container p{
+        font-size: .9rem;
+    }
 }

@@ -3,8 +3,9 @@ import { BooklistService } from './../../services/booklist.service';
 import { CommonModule, NgFor } from '@angular/common';
 import { book } from '../../interfaces/book';
 import { BooksApiServiceService } from './../../services/books-api-service.service';
-import { Component, inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
+import AOS from 'aos';
 
 @Component({
   selector: 'app-home',
@@ -13,39 +14,58 @@ import { RouterLink, RouterModule } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit/* , AfterViewInit */ {
 
-  private BooksApiServiceService = inject(BooksApiServiceService);
+  private BooksApiServiceService = inject(BooksApiServiceService); 
   private BooklistService=inject(BooklistService);
+
   listError:string=""
   booksArray:book[]=[];
   numeros:number[]=[];
   bookList:Booklist[]=[];
 
+/*   @ViewChildren('categoryDiv') categoryElements!: QueryList<ElementRef>; */
+
   ngOnInit(): void {
-    this.showBooksHomePage();
-    /* this.listPriceStock(); */
+    AOS.init();
+    this.showBooksHomePage()
   }
 
-  showBooksHomePage(){
-    this.BooksApiServiceService.getBooks()
-    .subscribe(
-      {
-        next:(books)=>{//pasarlo a set! para que no se repitan los numeros porque ya se repitieron
-          for(let i=0; i<4;i++){
-            this.numeros.push (Math.floor(Math.random()*books.length));
-          }
-          this.numeros.sort((a,b)=> a-b);
-          this.listPriceStock(this.numeros)
+/*   ngAfterViewInit(): void {
+    this.categoryElements.changes.subscribe((list: QueryList<ElementRef>) => {
+      this.observeElements(list);
+    });
+  } */
 
-          this.booksArray = books.filter(book => this.numeros.includes(book.id));
-        },
-        error:(error)=>{
-          console.log(error);
+/*   private observeElements(elements: QueryList<ElementRef>) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
         }
+      });
+    }, { threshold: 0.1 });
+
+    elements.forEach(element => {
+      observer.observe(element.nativeElement);
+    });
+  } */
+
+  showBooksHomePage() {
+    this.BooksApiServiceService.getBooks().subscribe({
+      next: (books) => {
+        this.numeros = this.generateUniqueRandomNumbers(4, 100);
+        // Asegúrate de que los libros se seleccionan correctamente según los IDs
+        this.booksArray = books.filter(book => this.numeros.includes(book.id));
+        this.listPriceStock(this.numeros);
+      },
+      error: (error) => {
+        console.log(error);
       }
-    )
+    })
   }
+  
+
 
   listPriceStock(numberList:number[]){
     this.listError="";
@@ -60,5 +80,15 @@ export class HomeComponent implements OnInit {
       }
     )
   }
+
+  generateUniqueRandomNumbers(count: number, max: number): number[] {
+    const randomNumbers = new Set<number>();
+    while (randomNumbers.size < count) {
+      const randomNumber = Math.floor(Math.random() * max) + 1;
+      randomNumbers.add(randomNumber);
+    }
+    return Array.from(randomNumbers);
+  }
+  
 
 }

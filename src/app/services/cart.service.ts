@@ -47,7 +47,6 @@ export class CartService {
     this.cartProducts.push(product);
     this.product.next(this.cartProducts);
     localStorage.setItem("Cart", JSON.stringify(this.cartProducts));
-    console.log(this.cartProducts);
   }
 
   eliminateProduct(product:Product){

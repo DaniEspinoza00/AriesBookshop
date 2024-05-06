@@ -1,59 +1,72 @@
 <header class="general-container">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-      <div class="container">
-        <!-- Logo al costado izquierdo -->
-        <a class="navbar-brand" [routerLink]="['/home']" href="#">
-          <img class="logo" src="./assets/images/logo.png" alt="" height="30">
-        </a>
-        <!-- Botón para colapsar el navbar en dispositivos pequeños -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Contenido del navbar -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Barra de búsqueda en el medio que ocupa la mitad del espacio -->
-          <form class="mx-auto w-50" action="#" method="get">
-            <div class="input-group">
-              <input class="form-control" type="search" name="q" placeholder="Buscar" aria-label="Buscar">
-              <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"
-                  aria-hidden="true"></i></button>
-            </div>
-          </form>
-          <!-- Enlaces de iniciar sesión y carrito a la derecha -->
-          <ul class="navbar-nav ms-auto">
-            @if (!userLoginOn) {
-              <li class="nav-item">
-              <a class="nav-link" [routerLink]="['login']"><i class="fas fa-user"></i>Login</a>
-            </li>
-            }@else {
-              <li class="nav-item">
-              <a class="nav-link" [routerLink]="['profile']"><i class="fas fa-user"></i>Account</a>
-            </li>
-            }
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="['/home']" href="#">
+        <img class="logo" src="./assets/images/aries-logo-navbar.png" alt="" height="30">
+      </a>
+      <!-- collapse button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- navbar content -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <form class="mx-auto w-50" [formGroup]="searchForm" (ngSubmit)="searchBooks()">
+          <div class="input-group">
+            <input class="form-control" type="search" formControlName="search" placeholder="Buscar" aria-label="Buscar">
+            <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
+          </div>
+        </form>
+        
+        <!-- links -->
+        <ul class="navbar-nav ms-auto">
+          @if (!userLoginOn) {
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['login']"><i class="fas fa-user"></i>Login</a>
+          </li>
+          }@else {
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['profile']"><i class="fas fa-user"></i>Account</a>
+          </li>
+          }
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['profile/cart']"><i class="fas fa-shopping-cart"></i>Cart</a>
+          </li>
+          <div class="links-nav-container d-flex flex-column">
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['profile/cart']"><i class="fas fa-shopping-cart"></i>Cart</a>
+              <a class="nav-link" [routerLink]="['/books']"><i class="fa-solid fa-book"></i>Libros</a>
             </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <div class="links-container">
-      <div class="container">
-        <ul class="nav-container-links navbar-nav ms-auto d-flex flex-row">
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/books']" href="#">Libros</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"> Catalogo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Musica</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"> Contacto</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link"><i class="fa-solid fa-book-open"></i>Catalogo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"><i class="fa-solid fa-music"></i>Musica</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/contact']"><i class="fa-solid fa-message-middle"></i>Contacto</a>
+            </li>
+          </div>
         </ul>
       </div>
     </div>
-  </header>
+  </nav>
+
+  <div class="links-container">
+    <div class="container">
+      <ul class="nav-container-links navbar-nav ms-auto d-flex flex-row">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/books']" href="#">Libros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Catalogo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Musica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/contact']"> Contacto</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

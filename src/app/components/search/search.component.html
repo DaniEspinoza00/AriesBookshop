@@ -1,0 +1,50 @@
+<div class="container mt-5" style="width: 60%;">
+    @if (bookList.length>0) {
+        <h3>Results for {{search}}</h3>
+        <table class="table table-striped">
+            <thead class="table-header">
+                <tr class="table-header-row">
+                  <th class="header-item" scope="col">
+                    <p>Book</p>
+                  </th>
+                  <th class="header-item" scope="col">
+                    <p>Title</p>
+                  </th>
+                  <th class="header-item" scope="col">
+                    <p>Author</p>
+                  </th>
+                  <th class="header-item" scope="col">
+                    <p>Price</p>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of bookList; let i=index">
+                    <td class="row-item" scope="row"><a [routerLink]="['/product', item.id]"><img style="max-width: 60px;"
+                        [src]="item?.image_url" alt="{{item?.title}}"></a>
+                  </td>
+                    <td>
+                        <p>{{item.title}}</p>
+                    </td>
+                    <td>
+                        <p>{{item.authors}}</p>
+                    </td>
+                    <td>
+                        <p>$ {{bookListPrice && bookListPrice[i] ? (bookListPrice[i].price | number:'1.2-2') : '' }}</p>
+                    </td>
+                </tr>
+              </tbody>
+        </table>
+    
+    }@else {
+        <div class="no-items d-flex flex-column justify-content-center align-items-center mt-5 ">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+              </svg>
+        
+            <p>Sorry, we could not find any book with that name, please try again</p>
+        
+            <a [routerLink]="['/books']" class="nav-link">Go to products</a>
+          </div>
+    }
+</div>

@@ -30,6 +30,16 @@ export class BooksApiServiceService {//para la api publica
     );
   }
 
+  getBooksBySearch(search:string):Observable<book[]>{
+    return this.getBooks().pipe(
+      map(books=> books.filter(book=>{
+        const bookTitle=book.title.toLowerCase();
+        const searchLowercase=search.toLowerCase();
+        return bookTitle.includes(searchLowercase);
+      }))
+    )
+  }
+
   getBooksByAuthor(author: string): Observable<book[]> {
     return this.getBooks().pipe(
       map(books => books.filter(book => book.authors.toLowerCase().includes(author.toLowerCase())))

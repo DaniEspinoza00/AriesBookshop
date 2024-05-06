@@ -1,6 +1,7 @@
 <div class="container mt-5 mb-5">
   <h2>Purchase History</h2>
-  <p class="user-data">{{userData?.firstname}} {{userData?.lastname}}</p>
+  @if (groupedPurchase.length>0) {
+    <p class="user-data">{{userData?.firstname}} {{userData?.lastname}}</p>
   <p class="user-data">{{userData?.username}}</p>
     <div class=" purchase mt-5 mb-5"
       *ngFor="let batch of groupedPurchase; let i = index">
@@ -12,33 +13,46 @@
 
       <div class="purchase-header row" style="border-bottom: 5px solid #fff;">
           <div class="purchase-header-title col-sm-2"><p>Book</p></div>
-          <div class="purchase-header-title col-sm-6"><p>Description</p></div>
-          <div class="purchase-header-title col-sm-2"><p>Quantity</p></div>
-          <div class="purchase-header-title col-sm-2"><p>Subtotal</p></div>
+          <div class="purchase-header-title col-sm-6 col-5"><p>Description</p></div>
+          <div class="purchase-header-title col-sm-2 col-3"><p>Quantity</p></div>
+          <div class="purchase-header-title col-sm-2 col-3"><p>Subtotal</p></div>
         </div>
 
       <div class="purchase-container row d-flex" style=" background-color: white;"
         *ngFor="let item of batch; let j=index">
         
-        <div class="col-sm-2">
+        <div class="purchase-container-book-image col-sm-2">
           <img style="max-width: 60px;" [src]="item?.image_url" alt="{{item?.title}}">
         </div>
 
-        <div class="col-sm-6">
-          <p> {{item.title}}</p>
-          <p> {{item.authors}}</p>
+        <div class="col-sm-6 col-5">
+          <p class="title"> {{item.title}}</p>
+          <p class="author"> {{item.authors}}</p>
         </div>
 
-        <div class="col-sm-2" style="text-align: center;">
-          <p> {{item.quantity}}</p>
+        <div class="col-sm-2 col-3" style="text-align: center;">
+          <p class="quantity"> {{item.quantity}}</p>
         </div>
 
-        <div class="col-sm-2" style="text-align: center;">
-          <p> $ {{item.subtotal | number:'1.2-2'}}</p>
+        <div class="col-sm-2 col-3" style="text-align: center;">
+          <p class="subtotal"> $ {{item.subtotal | number:'1.2-2'}}</p>
         </div>
       </div>
       <div class="total d-flex flex-row-reverse"><p>TOTAL: ${{groupedSubtotal[i] | number:'1.2-2'}}</p></div>
     </div>
+  }
+  @else {
+    <div class="no-items d-flex flex-column justify-content-center align-items-center mt-5 ">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-receipt-cutoff" viewBox="0 0 16 16">
+        <path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5M11.5 4a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z"/>
+        <path d="M2.354.646a.5.5 0 0 0-.801.13l-.5 1A.5.5 0 0 0 1 2v13H.5a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1H15V2a.5.5 0 0 0-.053-.224l-.5-1a.5.5 0 0 0-.8-.13L13 1.293l-.646-.647a.5.5 0 0 0-.708 0L11 1.293l-.646-.647a.5.5 0 0 0-.708 0L9 1.293 8.354.646a.5.5 0 0 0-.708 0L7 1.293 6.354.646a.5.5 0 0 0-.708 0L5 1.293 4.354.646a.5.5 0 0 0-.708 0L3 1.293zm-.217 1.198.51.51a.5.5 0 0 0 .707 0L4 1.707l.646.647a.5.5 0 0 0 .708 0L6 1.707l.646.647a.5.5 0 0 0 .708 0L8 1.707l.646.647a.5.5 0 0 0 .708 0L10 1.707l.646.647a.5.5 0 0 0 .708 0L12 1.707l.646.647a.5.5 0 0 0 .708 0l.509-.51.137.274V15H2V2.118z"/>
+      </svg>
+  
+      <p>To date, no purchase have been recorded</p>
+  
+      <a [routerLink]="['/books']" class="nav-link">Go to products</a>
+    </div>
+  }
 
 
 </div>

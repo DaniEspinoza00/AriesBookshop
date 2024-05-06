@@ -1,0 +1,40 @@
+/* section{
+  background-image: url(../../../assets/images/aries-library-logo2.png);
+  background-size: cover;
+  background-position: center;
+} */
+
+label{
+  font-family: "Alef", sans-serif;
+  font-size: .9rem;
+}
+ul{
+  list-style-type: none
+}
+
+ul li{
+  margin-bottom: 20px;
+}
+
+span{
+  font-family: "Rubik", sans-serif;
+  font-size: larger;
+}
+span i{
+  padding-right: 15px;
+}
+
+.send-button{
+  background-color: #432f2f;
+  color: hsla(0, 0%, 100%, .8);
+}
+
+.send-button:hover{
+  color: #fff;
+}
+
+@media screen and (max-width:767px) {
+  .contact-details{
+    margin-top: 3rem;
+  }
+}

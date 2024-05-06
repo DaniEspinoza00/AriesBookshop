@@ -1,13 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap');
 
-/* Estilos personalizados para el navbar  */
-/* .general-container{
-  width: 100%;
-  position: sticky;
-  top: 0;
-  z-index: 10000;
+.links-nav-container .nav-item{
+  display: none;
 }
- */
+
 .navbar {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -61,5 +57,9 @@
 @media screen and (max-width:767px) {
   .links-container{
     display: none;
+  }
+
+  .links-nav-container .nav-item{
+    display: block;
   }
 } 

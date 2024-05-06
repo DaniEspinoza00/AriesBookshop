@@ -39,7 +39,6 @@ export class PurchaseHistoryComponent implements OnInit{
         this.UserService.getUser(this.userId).subscribe({
           next:(response)=>{
             this.userData=response;
-            console.log(this.userData);
           }
         })
         this.fetchSales();

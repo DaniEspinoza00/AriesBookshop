@@ -1,8 +1,13 @@
 <section class="main-section">
-    <h2>login component</h2>
-    <div class="login-signup-container container d-flex justify-content-between mt-5">
+    <div class="image-logo">
+        <img src="./assets/images/aries-image.png" alt="" height="100">
+    </div>
+    <div class="login-signup-container container d-flex justify-content-between">
         <div class="log-in">
             @if(!userLoginOn){
+                <p class="sign-up-text" style="font-style: italic; margin-bottom: 1rem;">
+                    To make an order or add to favorites, please login
+                </p>
             <form [formGroup]="loginForm" (ngSubmit)="login()">
                 <p class="text-danger">{{loginError}}</p>
                 <div class="mb-3">
@@ -22,16 +27,15 @@
                         <div *ngIf="password.errors?.['required']">Password is required.</div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="send-button btn">Login</button>
             </form>
-            }@else {
-            <p>aca va la cuenta</p> 
             }
         </div>
 
 
 
          <div class="sign-up"> 
+            <p class="sign-up-text" style="font-style: italic; margin-bottom: 1rem;">If you don't have an account, please sign up</p>
             <form class="row g-3 needs-validation" [formGroup]="sign" novalidate>
                 <div class="col-md-5">
                     <label for="firstname" class="form-label">First name</label>
@@ -75,7 +79,7 @@
                     
                 </div>
                 <div class="col-12">
-                    <button class="btn btn-primary" (click)="signup()" type="submit">Create account</button>
+                    <button class="send-button btn" (click)="signup()" type="submit">Create account</button>
                 </div>
             </form>
         </div>

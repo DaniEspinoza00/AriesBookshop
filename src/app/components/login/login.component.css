@@ -15,9 +15,22 @@
     width: 50%;
 }
 
+.sign-up-text{
+    margin-bottom: 2rem;
+}
+
 .log-in, .sign-up{
     padding: 30px;
 }
+
+.send-button{
+    background-color: #432f2f;
+    color: hsla(0, 0%, 100%, .8);
+}
+
+.send-button:hover{
+    color: #fff;
+  }
 
 @media screen and (max-width:991px) {
     .login-signup-container{

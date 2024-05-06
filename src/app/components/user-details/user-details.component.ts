@@ -40,13 +40,10 @@ export class UserDetailsComponent implements OnInit {
     this.userService.getUser(this.userId).subscribe({
       next: (userData) => {
         this.user = userData;
-
-        // Convertir el id a string antes de asignarlo al formulario
         this.userDetails.patchValue({
           ...userData,
           id: userData.id.toString()
         });
-
         this.name = userData.username;
       },
       error: (errorData) => {
@@ -81,6 +78,28 @@ export class UserDetailsComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  editUser(){
+    if(this.userDetails.valid){
+      
+      this.userService.updateUser(this.userDetails.value as unknown as User). subscribe(
+        {
+          next:()=>{
+            alert("Se ha actualizado correctamente");
+            this.reloadCurrentRoute();
+          },
+          error:(error)=>{
+            console.log(error);
+          }
+        }
+      )
+    }
+  }
 
+  reloadCurrentRoute() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
 
 }

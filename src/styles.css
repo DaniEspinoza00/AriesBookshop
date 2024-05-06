@@ -1,3 +1,4 @@
+
 body {
     margin: 0;
 }
@@ -117,6 +118,13 @@ h5 {
 .filter-container {
     width: 30%;
     margin-bottom: auto;
+}
+
+/******cart, favs, purchase******/
+.author{
+    font-size: .9rem;
+    font-style: italic;
+    color: #a7a4a4;
 }
 
 /*forms*/
