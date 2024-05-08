@@ -1,7 +1,7 @@
 <header class="general-container">
   <nav class="navbar navbar-expand-md navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/home']" href="#">
+      <a class="navbar-brand" [routerLink]="['/home']">
         <img class="logo" src="./assets/images/aries-logo-navbar.png" alt="" height="30">
       </a>
       <!-- collapse button -->
@@ -13,7 +13,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <form class="mx-auto w-50" [formGroup]="searchForm" (ngSubmit)="searchBooks()">
           <div class="input-group">
-            <input class="form-control" type="search" formControlName="search" placeholder="Buscar" aria-label="Buscar">
+            <input class="form-control" type="search" formControlName="search" placeholder="Search the name of the book" aria-label="Buscar">
             <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
           </div>
         </form>
@@ -34,16 +34,16 @@
           </li>
           <div class="links-nav-container d-flex flex-column">
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/books']"><i class="fa-solid fa-book"></i>Libros</a>
+              <a class="nav-link" [routerLink]="['/books']"><i class="fa-solid fa-book"></i>Books</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link"><i class="fa-solid fa-book-open"></i>Catalogo</a>
+              <a class="nav-link"><i class="fa-solid fa-book-open"></i>Catalogue</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link"><i class="fa-solid fa-music"></i>Musica</a>
+              <a class="nav-link"><i class="fa-solid fa-music"></i>Music</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/contact']"><i class="fa-solid fa-message-middle"></i>Contacto</a>
+              <a class="nav-link" [routerLink]="['/contact']"><i class="fa-solid fa-message-middle"></i>Contact</a>
             </li>
           </div>
         </ul>
@@ -55,16 +55,16 @@
     <div class="container">
       <ul class="nav-container-links navbar-nav ms-auto d-flex flex-row">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/books']" href="#">Libros</a>
+          <a class="nav-link" [routerLink]="['/books']">Books</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"> Catalogo</a>
+          <a class="nav-link"> Catalogue</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Musica</a>
+          <a class="nav-link">Music</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/contact']"> Contacto</a>
+          <a class="nav-link" [routerLink]="['/contact']"> Contact</a>
         </li>
       </ul>
     </div>

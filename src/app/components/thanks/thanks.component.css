@@ -1,0 +1,19 @@
+.no-items svg{
+    width: 100px;
+    height: 100px;
+    margin-bottom: 3rem;
+}
+.no-items a{
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #432f2f;
+    font-family: "Alef", sans-serif;
+}
+
+.no-items a{
+    color: hsla(0, 0%, 100%, .8);
+}
+
+.no-items a:hover{
+    color: #fff;
+}

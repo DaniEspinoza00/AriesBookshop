@@ -10,6 +10,7 @@ import { PurchaseHistoryPageComponent } from './pages/purchase-history-page/purc
 import { AuthGuard } from './components/guards/auth-guard';
 import { LoginGuard } from './components/guards/login-guard';
 import { SearchPageComponent } from './pages/search-page/search-page.component';
+import { ThanksPageComponent } from './pages/thanks-page/thanks-page.component';
 
 export const routes: Routes = [
     {path:'home', component:HomePageComponent},
@@ -24,5 +25,6 @@ export const routes: Routes = [
     {path:'profile/purchase-history', component:PurchaseHistoryPageComponent, canActivate:[AuthGuard]},
     {path:'contact', loadComponent:()=> import('./pages/contact-page/contact-page.component').then(c => c.ContactPageComponent)},
     {path:'search/:title', component:SearchPageComponent},
+    {path:'thanks', component:ThanksPageComponent, canActivate:[AuthGuard]},
     {path:'**', redirectTo:"home"}
 ];

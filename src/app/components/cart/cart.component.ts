@@ -108,11 +108,10 @@ export class CartComponent implements OnInit {
        this.salesService.postSales(this.saleList).subscribe(
         {
           next: (next) => {
-            alert("Gracias por comprar en Aries Bookshop");
             this.saleList = [];
             this.productList = [];
             this.CartService.cleanProducts();
-            this.router.navigateByUrl('/home');
+            this.router.navigateByUrl('/thanks');
           },
           error: (error) => {
             console.log(error);

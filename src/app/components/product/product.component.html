@@ -16,81 +16,183 @@
                 <p style="font-style: italic; font-size: .8rem; color: grey;">Stock:{{booklistItem?.stock}}</p>
             </div>
             <div class="div2">
-                <a href="">Medios de Pago</a>
-                <a href="">Costos de Envio</a>
+                <a data-bs-toggle="modal" data-bs-target="#paymentModal">Payment Methods</a>
+                <a data-bs-toggle="modal" data-bs-target="#costsModal">Shipping</a>
             </div>
             <div class="div3 container d-flex flex-column">
                 @if (booklistItem?.stock===0) {
-                    <button type="button" class="btn btn-secondary">OUT OF STOCK</button>
+                <button type="button" class="btn btn-secondary">OUT OF STOCK</button>
                 }@else {
-                    <button type="button" (click)="addToCart(book!, booklistItem!.price)" class="cart-btn btn btn-secondary">ADD TO CART</button>
+                <button type="button" (click)="addToCart(book!, booklistItem!.price)"
+                    class="cart-btn btn btn-secondary">ADD TO CART</button>
                 }
                 @if (!isBookFaved) {
-                    <button type="button" (click)="addToFavs(book!.id)" class="fav-btn btn btn-secondary">ADD TO FAVORITES</button>
+                <button type="button" (click)="addToFavs(book!.id)" class="fav-btn btn btn-secondary">ADD TO
+                    FAVORITES</button>
                 }
                 @else {
-                   <button type="button" (click)="removeFavs()" class="btn btn-secondary">REMOVE FROM FAVORITES</button> 
+                <button type="button" (click)="removeFavs()" class="btn btn-secondary">REMOVE FROM FAVORITES</button>
                 }
-                
-                
+
+
             </div>
         </div>
     </div>
     <div class="product-description-container">
         <div class="product-description row">
-        <div class="descripcion2 col-md-4">
-            <p>DESCRIPCION</p>
+            <div class="descripcion2 col-md-4">
+                <p>DESCRIPTION</p>
+            </div>
+            <div class="sinopsis col-md-8">
+                <h4>Book synopsis</h4>
+                <p>{{book?.description}}</p>
+            </div>
         </div>
-        <div class="sinopsis col-md-8">
-            <h4>Sinopsis del Libro</h4>
-            <p>{{book?.description}}</p>
+        <div class="product-description row">
+            <div class="descripcion2 col-md-4">
+                <p>AUTHOR/S</p>
+            </div>
+            <div class="sinopsis col-md-8">
+                <h4>Author</h4>
+                <p>{{book?.authors}}</p>
+            </div>
+        </div>
+        <div class="product-description row">
+            <div class="descripcion2 col-md-4">
+                <p>GENRE</p>
+            </div>
+            <div class="sinopsis col-md-8">
+                <h4>Genres</h4>
+                <p>{{book?.genres}}</p>
+            </div>
+        </div>
+        <div class="product-description row">
+            <div class="descripcion2 col-md-4">
+                <p>NUMBER OF PAGES</p>
+            </div>
+            <div class="sinopsis col-md-8">
+                <h4>Pages</h4>
+                <p>{{book?.num_pages}}</p>
+            </div>
+        </div>
+        <div class="product-description row">
+            <div class="descripcion2 col-md-4">
+                <p>EDITION</p>
+            </div>
+            <div class="sinopsis col-md-8">
+                <h4>Edition</h4>
+                <p>{{book?.edition}}</p>
+            </div>
+        </div>
+        <div class="product-description row">
+            <div class="descripcion2 col-md-4">
+                <p>FORMAT</p>
+            </div>
+            <div class="sinopsis col-md-8">
+                <h4>Format</h4>
+                <p>{{book?.format}}</p>
+            </div>
         </div>
     </div>
-    <div class="product-description row">
-        <div class="descripcion2 col-md-4">
-            <p>AUTOR/ES</p>
-        </div>
-        <div class="sinopsis col-md-8">
-            <h4>Autor</h4>
-            <p>{{book?.authors}}</p>
-        </div>
-    </div>
-    <div class="product-description row">
-        <div class="descripcion2 col-md-4">
-            <p>GENERO</p>
-        </div>
-        <div class="sinopsis col-md-8">
-            <h4>Generos</h4>
-            <p>{{book?.genres}}</p>
-        </div>
-    </div>
-    <div class="product-description row">
-        <div class="descripcion2 col-md-4">
-            <p>CANTIDAD DE PAGINAS</p>
-        </div>
-        <div class="sinopsis col-md-8">
-            <h4>Paginas</h4>
-            <p>{{book?.num_pages}}</p>
-        </div>
-    </div>
-    <div class="product-description row">
-        <div class="descripcion2 col-md-4">
-            <p>EDICIÓN</p>
-        </div>
-        <div class="sinopsis col-md-8">
-            <h4>Edicion</h4>
-            <p>{{book?.edition}}</p>
-        </div>
-    </div>
-    <div class="product-description row">
-        <div class="descripcion2 col-md-4">
-            <p>FORMATO</p>
-        </div>
-        <div class="sinopsis col-md-8">
-            <h4>Formato</h4>
-            <p>{{book?.format}}</p>
-        </div>
-    </div>
-    </div>
-    
+
 </div>
+
+<div class="modal-information modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paymentModalLabel">Payment Methods</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-information-content modal-body">
+                <h5 style="text-align: center;">In Argentina</h5>
+                <p class="modal__subtitulo">To purchase in Argentina, our payment methods are:</p>
+                <p>> Deposit or transfer in our bank account: after purchase, you will receive an email with neccesary info to make the payment</p>
+                <p>> Credit cards: Visa, Mastercard y American Express.</p>
+                <p>> MercadoPago</p>
+                <p>> Mobbex</p>
+                <p>> RapiPago o Pago Fácil: you will receive a coupon in your email box to show it in every branch.</p>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-information modal fade" id="costsModal" tabindex="-1" aria-labelledby="costsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="costsModalLabel">Shipping</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-information-content modal-body">
+                <div class="titulo_tabla">
+                    <h5>Shipping time</h5> 
+                 </div>
+                 <table>
+                     <thead>
+                         <tr>
+                             <th>Place</th>
+                             <th>Shipping time</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr>
+                             <td>Mar del Plata</td>
+                             <td>During the day</td>
+                         </tr>
+                         <tr>
+                             <td>Capital Federal</td>
+                             <td>2-3 business days</td>
+                         </tr>
+                         <tr>
+                             <td>Provincia de Buenos Aires</td>
+                             <td>2-4 business days</td>
+                         </tr>
+                         <tr>
+                             <td>Rest of the country</td>
+                             <td>3-5 business days</td>
+                         </tr>
+
+                     </tbody>
+                 </table>
+                 
+                 <div class="titulo_tabla">
+                     <h5>Shipping cost</h5> 
+                  </div>
+                  <table>
+                     <thead>
+                         <tr>
+                             <th>Region</th>
+                             <th>Fixed cost</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr>
+                             <td>Mar del Plata</td>
+                             <td>$ 750</td>
+                         </tr>
+                         <tr>
+                             <td>Buenos Aires (GBA)</td>
+                             <td>$ 1150</td>
+                         </tr>
+                         <tr>
+                             <td>Buenos Aires (Interior)</td>
+                             <td>$ 1650</td>
+                         </tr>
+                         <tr>
+                             <td>CABA</td>
+                             <td>$ 1150</td>
+                         </tr>
+                         <tr>
+                             <td>Rest of the country</td>
+                             <td>$ 1850</td>
+                         </tr>
+                     </tbody>
+                  </table>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
