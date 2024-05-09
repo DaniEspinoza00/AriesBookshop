@@ -1,24 +1,27 @@
 import { Booklist } from './../../interfaces/book-list';
 import { BooklistService } from './../../services/booklist.service';
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { book } from '../../interfaces/book';
 import { BooksApiServiceService } from './../../services/books-api-service.service';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import AOS from 'aos';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NgFor,RouterModule,CommonModule, RouterLink],
+  imports: [NgIf,NgFor,RouterModule,CommonModule, RouterLink, MatProgressSpinnerModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
+  encapsulation: ViewEncapsulation.Emulated
 })
-export class HomeComponent implements OnInit/* , AfterViewInit */ {
+export class HomeComponent implements OnInit {
 
   private BooksApiServiceService = inject(BooksApiServiceService); 
   private BooklistService=inject(BooklistService);
   private router=inject(Router);
+  isLoading: boolean = false;
   listError:string=""
   booksArray:book[]=[];
   numeros:number[]=[];
@@ -42,14 +45,17 @@ export class HomeComponent implements OnInit/* , AfterViewInit */ {
   }
 
   showBooksHomePage() {
+    this.isLoading = true;
     this.BooksApiServiceService.getBooks().subscribe({
       next: (books) => {
         this.numeros = this.generateUniqueRandomNumbers(4, 100);
         this.booksArray = books.filter(book => this.numeros.includes(book.id));
         this.listPriceStock(this.numeros);
+        this.isLoading = false;
       },
       error: (error) => {
         console.log(error);
+        this.isLoading = false;
       }
     })
   }
@@ -62,9 +68,11 @@ export class HomeComponent implements OnInit/* , AfterViewInit */ {
       {
         next:(list)=>{
           this.bookList=list.filter(book=>numberList.includes(book.id));
+          
         },
         error:(error)=>{
           console.log(error);
+          this.isLoading = false;
         }
       }
     )

@@ -1,5 +1,4 @@
-import { BooklistService } from './../../services/booklist.service';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, inject } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { Booklist } from '../../interfaces/book-list';
 import { Favorites } from '../../interfaces/favorites';
@@ -7,29 +6,31 @@ import { LoginService } from '../../services/login.service';
 import { FavoritesService } from '../../services/favorites.service';
 import { book } from '../../interfaces/book';
 import { BooksApiServiceService } from '../../services/books-api-service.service';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [NgFor, RouterLink],
+  imports: [NgFor, RouterLink, MatProgressSpinnerModule],
   templateUrl: './favorites.component.html',
-  styleUrl: './favorites.component.css'
+  styleUrl: './favorites.component.css',
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class FavoritesComponent implements OnInit{
   
-
   listado:Booklist[]=[];
   favList:Favorites[]=[];
   booklist:book[]=[];
-
-  orderedBookIndexes: number[] = [];
-
-  favoriteService=inject(FavoritesService);
-  loginService=inject(LoginService);
-  BooklistService=inject(BooksApiServiceService);
-  private router= inject (Router);
+  isLoading: boolean = false;
   userId: number = 0;
+
+  private orderedBookIndexes: number[] = [];
+  private favoriteService=inject(FavoritesService);
+  private loginService=inject(LoginService);
+  private BooklistService=inject(BooksApiServiceService);
+  private router= inject (Router);
+  
 
   ngOnInit(): void {
       this.getFavorites();
@@ -40,6 +41,7 @@ export class FavoritesComponent implements OnInit{
      this.loginService.userId.subscribe(id=>{
       this.userId=id
     })
+    this.isLoading=true;
     this.favoriteService.getFavoritesIdUser(this.userId).subscribe(
       {
         next:(favorites)=>{
@@ -57,6 +59,9 @@ export class FavoritesComponent implements OnInit{
               }
             );
           })
+          setTimeout(()=>{
+            this.isLoading = false;
+          },1000);
         },
         error:(error)=>{
           console.log(error);

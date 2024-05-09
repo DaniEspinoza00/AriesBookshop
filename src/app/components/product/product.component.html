@@ -21,10 +21,10 @@
             </div>
             <div class="div3 container d-flex flex-column">
                 @if (booklistItem?.stock===0) {
-                <button type="button" class="btn btn-secondary">OUT OF STOCK</button>
+                <button type="button" class="btn btn-secondary" disabled>OUT OF STOCK</button>
                 }@else {
-                <button type="button" (click)="addToCart(book!, booklistItem!.price)"
-                    class="cart-btn btn btn-secondary">ADD TO CART</button>
+                <button type="button" (click)="addToCart(book!, booklistItem!)"
+                    class="cart-btn btn btn-secondary">ADD TO CART</button><!-- cambiado -->
                 }
                 @if (!isBookFaved) {
                 <button type="button" (click)="addToFavs(book!.id)" class="fav-btn btn btn-secondary">ADD TO

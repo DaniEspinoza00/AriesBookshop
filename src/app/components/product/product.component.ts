@@ -36,13 +36,11 @@ export class ProductComponent implements OnInit {
   isBookFaved:boolean=false;
   idFaved:number=0;
   idRoute:number=0;
-  /* private location=inject(Location); //para el modal */
 
   ngOnInit(): void {
     this.showBook();
     this.LoginService.userId.subscribe(id => {
       this.userId = id
-      console.log(this.userId);
     })
     if(this.userId !== 0){
       this.FavoritesService.getFavoritesIdUser(this.userId).subscribe(
@@ -88,15 +86,16 @@ export class ProductComponent implements OnInit {
     })
   }
 
-  addToCart(book: book, price: number) {
+  addToCart(book: book, booklistItem:Booklist) {//CAMBIADO
     const product: Product = {
       id: book.id,
       image_url: book.image_url,
       title: book.title,
       authors: book.authors,
       edition: book.edition,
-      price: price,
+      price: booklistItem.price,
       quantity: 1,
+      stock:booklistItem.stock,
     }
     this.CartService.addNewProduct(product);
   }

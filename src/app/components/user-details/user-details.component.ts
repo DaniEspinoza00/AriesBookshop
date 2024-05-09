@@ -1,28 +1,33 @@
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, inject } from '@angular/core';
 import { User } from '../../interfaces/user';
 import { UserService } from '../../services/user.service';
 import { LoginService } from '../../services/login.service';
 import { Router, RouterModule } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-details',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule],
+  imports: [ReactiveFormsModule, RouterModule, MatProgressSpinnerModule],
   templateUrl: './user-details.component.html',
-  styleUrl: './user-details.component.css'
+  styleUrl: './user-details.component.css',
+  encapsulation: ViewEncapsulation.Emulated
+
 })
 export class UserDetailsComponent implements OnInit {
-  name: string = '';
-  userId: number = 0;
-  userService = inject(UserService);
-  formBuilder = inject(FormBuilder);
-  loginService = inject(LoginService);
-  router = inject(Router);
+  
+  private userId: number = 0;
+  private userService = inject(UserService);
+  private formBuilder = inject(FormBuilder);
+  private loginService = inject(LoginService);
+  private router = inject(Router);
+  isLoading: boolean = false;
   user?: User;
   errorMessage: String = "";
   userLoginOn: boolean = false;
-
+  name: string = '';
 
   userDetails = this.formBuilder.group({
     id: [''],
@@ -80,11 +85,18 @@ export class UserDetailsComponent implements OnInit {
 
   editUser(){
     if(this.userDetails.valid){
-      
+      this.isLoading=true;
       this.userService.updateUser(this.userDetails.value as unknown as User). subscribe(
         {
           next:()=>{
-            alert("Se ha actualizado correctamente");
+            this.isLoading=false;
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "User edited successfully",
+              showConfirmButton: false,
+              timer: 2500
+            });
             this.reloadCurrentRoute();
           },
           error:(error)=>{

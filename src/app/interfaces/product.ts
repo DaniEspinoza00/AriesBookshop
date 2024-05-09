@@ -6,5 +6,6 @@ export interface Product{
     edition:string;
     price:number;
     quantity:number;
-    subtotal?: number
+    subtotal?: number;
+    stock:number /* CAMBIADO */
 }

@@ -11,3 +11,8 @@ html{
     top: 0;
   z-index: 10000;
 }
+
+:host ::ng-deep mat-spinner circle {
+    stroke: #432f2f !important;
+  }
+  

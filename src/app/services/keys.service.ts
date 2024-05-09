@@ -10,11 +10,9 @@ export class KeysService {
 
   constructor(private http:HttpClient) { }
 
-/*   getKey (name:String):Observable<String>{
-    return this.http.get<String>(environments.urlApiKey + "/" + name);
-  } */
-  getKey(name: string): Observable<any> {  // Cambiado a any para ser más genérico
-    return this.http.get<string>(`${environments.urlApiKey}/${name}`, {responseType: 'text' as 'json'}); //para recibir una cadena de texto plano
-    //en lugar de un json
+
+  getKey(name: string): Observable<any> { 
+    return this.http.get<string>(`${environments.urlApiKey}/${name}`, {responseType: 'text' as 'json'});
+
   }
 }

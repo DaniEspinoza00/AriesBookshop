@@ -10,9 +10,6 @@ export class CartService {
   cartProducts: Product[] = [];
   private product: BehaviorSubject<Product[]>;
 
-  /* constructor() {
-    this.product=new BehaviorSubject<Product[]>([]);
-  } */
 
   constructor() {
     const cart = localStorage.getItem("Cart");

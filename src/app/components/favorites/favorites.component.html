@@ -1,4 +1,11 @@
-<div class="container mt-5">
+@if (isLoading) {
+  <div class="full-screen-spinner d-flex flex-column justify-content-center align-items-center">
+  <mat-spinner class="spinner" diameter="80"></mat-spinner>
+  <span>Wait a moment...</span>
+</div>
+}
+@if (!isLoading) {
+  <div class="container mt-5">
     <h3>Wishlist</h3>
     @if (booklist.length>0) {
       <table class="table table-striped">
@@ -36,3 +43,5 @@
     }
     
 </div>
+
+}

@@ -5,8 +5,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SignUpService } from '../../services/signup.service';
-import { User } from '../../interfaces/user';
-import { AuthResponse } from '../../interfaces/auth-response';
+import Swal from 'sweetalert2';
 import { RegisterRequest } from '../../interfaces/register-request';
 
 @Component({
@@ -48,16 +47,6 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
-/* 
-     this.signupForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required]],
-      firstname: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
-      country: ['', [Validators.required]],
-    }) */
-
     this.sign.get('confirmPassword')?.valueChanges.subscribe(() => {
       this.verifyPassword();
     }); 
@@ -69,7 +58,7 @@ export class LoginComponent implements OnInit {
     const password = this.sign.get('password2')?.value;
     const confirmPassword = this.sign.get('confirmPassword')?.value;
     if (password !== confirmPassword) {
-      this.sign.get('confirmPassword')?.setErrors({ DoNotMatch: true });//ojo con el do not match
+      this.sign.get('confirmPassword')?.setErrors({ DoNotMatch: true });
     } else {
       this.sign.get('confirmPassword')?.setErrors(null);
     }
@@ -130,7 +119,7 @@ login(){
 
     signup() {
     if (this.sign.invalid) {
-      this.signupForm.markAllAsTouched(); //esto muestra todo con verde y rojo segun
+      this.signupForm.markAllAsTouched(); 
       alert("Error al ingresar los datos");
       return;
     }
@@ -145,7 +134,13 @@ login(){
     this.signupService.añadirUsuario(user).subscribe(
       {
         next: () => {
-          alert("Se ha agregado tu usuario");
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your user has been created",
+            showConfirmButton: false,
+            timer: 2500
+          });
           this.router.navigate(['home']);
         },
         error: (error) => {

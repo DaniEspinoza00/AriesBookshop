@@ -3,6 +3,12 @@
         <app-filters></app-filters>
     </div>
     <div class="books-listing d-flex flex-column justify-content-center">
+        @if (isLoading) {
+        <div class="loading-container d-flex flex-column justify-content-center align-items-center">
+            <mat-spinner></mat-spinner>
+            <span style="font-size: 1.5rem;">Loading...</span>
+        </div>
+        }  
         <h4>Our books</h4>
         <div class="grid-container justify-content-center">
             <app-book-card class="product-card-price" *ngFor="let item of booksList" [item]="item"></app-book-card>

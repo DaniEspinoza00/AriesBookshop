@@ -1,5 +1,3 @@
-/*para no entrar a lugares del usuario logeado*/
-
 import { inject } from "@angular/core";
 import { Observable, tap } from "rxjs";
 import { UserService } from "../../services/user.service";

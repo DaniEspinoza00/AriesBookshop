@@ -8,12 +8,13 @@ import { BookCardComponent } from '../../shared/book-card/book-card.component';
 import { Booklist } from '../../interfaces/book-list';
 import { BooklistService } from '../../services/booklist.service';
 import { forkJoin } from 'rxjs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @Component({
   selector: 'app-catalogue',
   standalone: true,
-  imports: [RouterLink, NgFor,FiltersComponent,BookCardComponent],
+  imports: [RouterLink, NgFor,FiltersComponent,BookCardComponent,MatProgressSpinnerModule],
   templateUrl: './catalogue.component.html',
   styleUrl: './catalogue.component.css'
 })
@@ -21,6 +22,7 @@ export class CatalogueComponent implements OnInit {
 
   booksList:book[]|undefined=[];
   booksArray:Booklist[]|undefined=[];
+  isLoading: boolean = false;
   private BooklistService= inject (BooklistService);
   private BooksApiServiceService = inject(BooksApiServiceService);
 
@@ -28,6 +30,7 @@ export class CatalogueComponent implements OnInit {
     this.showBooks();
   }
   showBooks(){
+    this.isLoading=true;
     forkJoin({
       books: this.BooksApiServiceService.getBooks(),
       bookLists: this.BooklistService.getBookListkHttp()
@@ -37,6 +40,7 @@ export class CatalogueComponent implements OnInit {
           const booklist = bookLists.find(bl => bl.id === book.id);
           return {...book, booklist};
         });
+        this.isLoading = false;
       },
       error: (error) => {
         console.log(error);

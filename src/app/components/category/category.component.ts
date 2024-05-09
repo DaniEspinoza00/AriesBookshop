@@ -68,7 +68,7 @@ export class CategoryComponent implements OnInit{
   }
 
   combineBookInfo() {
-    // Asumiendo que booksArray y booksList están en el mismo orden y tienen la misma longitud
+
     this.booksList = this.booksList.map((book, index) => ({
       ...book,
       booklist: this.booksArray ? this.booksArray[index] : undefined
