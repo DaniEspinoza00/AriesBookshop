@@ -1,10 +1,10 @@
 export const environment = {
    production:true,
    baseUrl:'https://example-data.draftbit.com',
-   urlHost:'http://ariesbookshop-env.eba-fgdmagzd.us-east-2.elasticbeanstalk.com/',
-   urlApi: 'http://ariesbookshop-env.eba-fgdmagzd.us-east-2.elasticbeanstalk.com/api/v1/',
-   urlBooks:'http://ariesbookshop-env.eba-fgdmagzd.us-east-2.elasticbeanstalk.com/api/booklist',
-   urlFavs:'http://ariesbookshop-env.eba-fgdmagzd.us-east-2.elasticbeanstalk.com/api/favorites',
-   urlSales:'http://ariesbookshop-env.eba-fgdmagzd.us-east-2.elasticbeanstalk.com/api/sales',
-   urlApiKey:'http://ariesbookshop-env.eba-fgdmagzd.us-east-2.elasticbeanstalk.com/api/keys', 
+   urlHost:'http://ariesbookshopback.azurewebsites.net/',
+   urlApi: 'http://ariesbookshopback.azurewebsites.net/api/v1/',
+   urlBooks:'http://ariesbookshopback.azurewebsites.net/api/booklist',
+   urlFavs:'http://ariesbookshopback.azurewebsites.net/api/favorites',
+   urlSales:'http://ariesbookshopback.azurewebsites.net/api/sales',
+   urlApiKey:'http://ariesbookshopback.azurewebsites.net/api/keys', 
 }
