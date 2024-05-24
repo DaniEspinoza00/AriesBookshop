@@ -2,8 +2,8 @@ import { Favorites } from './../interfaces/favorites';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environments } from '../../environments/environments';
 import { favRequest } from '../interfaces/favorite-request';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -14,18 +14,18 @@ export class FavoritesService {
 
   postFavorite(favorite:favRequest):Observable<favRequest>{
     return this.http.post<favRequest>(
-      environments.urlFavs,
+      environment.urlFavs,
       favorite,
       {headers:{'Content-Type':'application/json'}}
     );
   }
 
   getFavoritesIdUser(id:number):Observable<Favorites[]>{
-    return this.http.get<Favorites[]>(environments.urlFavs+"/"+id);
+    return this.http.get<Favorites[]>(environment.urlFavs+"/"+id);
   }
 
   deleteFavorite(id:number):Observable<Favorites>{
-    return this.http.delete<Favorites>(environments.urlFavs+"/"+id);
+    return this.http.delete<Favorites>(environment.urlFavs+"/"+id);
   }
 
 }

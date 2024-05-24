@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, map, tap, throwError} from 'rxjs';
-import { environments } from '../../environments/environments';
 import { LoginRequest } from '../interfaces/login-request';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class LoginService {
   }
 
   login(credentials:LoginRequest):Observable<any>{
-    return this.http.post<any>(environments.urlHost+"auth/login",credentials).pipe(
+    return this.http.post<any>(environment.urlHost+"auth/login",credentials).pipe(
       tap( (userData) => {
         sessionStorage.setItem("token", userData.token);
         this.currentUserData.next(userData.token);

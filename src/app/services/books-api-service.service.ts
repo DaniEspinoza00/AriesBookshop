@@ -1,8 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { book } from '../interfaces/book';
-import { environments } from '../../environments/environments';
 import { Observable, catchError, map, throwError } from 'rxjs';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import { Observable, catchError, map, throwError } from 'rxjs';
 export class BooksApiServiceService {//para la api publica
 
   bookList:book[]=[];
-  urlApi:string=environments.baseUrl;
+  urlApi:string=environment.baseUrl;
   limit:string='books?_limit=100';
   books:string='books'
 

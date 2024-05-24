@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, catchError, forkJoin, map, throwError } from 'rxjs';
-import { environments } from '../../environments/environments';
 import { book } from '../interfaces/book';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +16,11 @@ export class BooklistService {//para precio y stock
   constructor(private router:Router, private http:HttpClient) { }
 
   getBookListkHttp():Observable<Booklist[]>{
-    return this.http.get<Booklist[]>(environments.urlBooks);
+    return this.http.get<Booklist[]>(environment.urlBooks);
   }
   
   getBookStockPrice(id:number):Observable<Booklist>{
-    return this.http.get<Booklist>(environments.urlBooks+"/"+id );
+    return this.http.get<Booklist>(environment.urlBooks+"/"+id );
   }
 
   mostrarPrecioIDstockHttp(librosFiltrados: book[]): Observable<Booklist[]> {
@@ -36,7 +36,7 @@ export class BooklistService {//para precio y stock
   updateBook(book: Booklist, quantity: number): Observable<Booklist> {
     const params = new HttpParams().set('quantity', quantity.toString());
     const options = { params: params };
-    return this.http.put<Booklist>(environments.urlBooks, book, options).pipe(
+    return this.http.put<Booklist>(environment.urlBooks, book, options).pipe(
       catchError(this.handleError)
     );
   }
