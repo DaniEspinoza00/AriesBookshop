@@ -26,5 +26,5 @@ export const routes: Routes = [
     {path:'contact', loadComponent:()=> import('./pages/contact-page/contact-page.component').then(c => c.ContactPageComponent)},
     {path:'search/:title', component:SearchPageComponent},
     {path:'thanks', component:ThanksPageComponent, canActivate:[AuthGuard]},
-    {path:'**', redirectTo:"home"}
+    {path:'**', redirectTo:"home", pathMatch: 'full'}
 ];
