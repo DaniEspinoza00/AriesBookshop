@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { favRequest } from '../interfaces/favorite-request';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environments';
 
 @Injectable({
   providedIn: 'root'
