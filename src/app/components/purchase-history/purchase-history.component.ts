@@ -66,7 +66,6 @@ export class PurchaseHistoryComponent implements OnInit {
           this.loadBooksDetails().subscribe(() => {
             this.groupedPurchase = this.purchaseList();
             this.calculateSubtotals();
-            console.log(this.groupedSubtotal);
           });
         },
         error: (error) => console.log(error)

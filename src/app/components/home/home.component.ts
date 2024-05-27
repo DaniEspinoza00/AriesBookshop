@@ -7,6 +7,7 @@ import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import AOS from 'aos';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -43,21 +44,24 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['/category/Literature']);
 
   }
-
+  
   showBooksHomePage() {
     this.isLoading = true;
-    this.BooksApiServiceService.getBooks().subscribe({
-      next: (books) => {
+    const books$ = this.BooksApiServiceService.getBooks();
+    const bookList$ = this.BooklistService.getBookListkHttp();
+  
+    forkJoin([books$, bookList$]).subscribe({
+      next: ([books, list]) => {
         this.numeros = this.generateUniqueRandomNumbers(4, 100);
         this.booksArray = books.filter(book => this.numeros.includes(book.id));
-        this.listPriceStock(this.numeros);
+        this.bookList = list.filter(book => this.numeros.includes(book.id));
         this.isLoading = false;
       },
       error: (error) => {
         console.log(error);
         this.isLoading = false;
       }
-    })
+    });
   }
   
 
@@ -72,7 +76,6 @@ export class HomeComponent implements OnInit {
         },
         error:(error)=>{
           console.log(error);
-          this.isLoading = false;
         }
       }
     )

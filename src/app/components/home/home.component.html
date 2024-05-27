@@ -1,9 +1,11 @@
 <section class="main-section">
     <h2>Today's recommendations</h2>
-    <div class="loading-container d-flex flex-column justify-content-center align-items-center" *ngIf="isLoading">
+    @if (isLoading) {
+    <div class="loading-container d-flex flex-column justify-content-center align-items-center">
         <mat-spinner></mat-spinner>
         <span style="font-size: 1.5rem;">Loading...</span>
     </div>
+    }
     <div class="container-products container d-flex justify-content-center">
         <div class="container-products-card row">
             <div class="product-card-price col-12 col-md-6 col-lg-3" *ngFor="let item of booksArray; let i=index">

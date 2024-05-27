@@ -74,11 +74,10 @@ export class FavoritesComponent implements OnInit{
     this.favoriteService.deleteFavorite(id).subscribe(
       {
         next:(reponse)=>{
-          console.log("el favorito se elimino con exito", reponse);
           this.reloadCurrentRoute();
         },
         error:(error)=>{
-          console.log("no se pudo eliminar el favorito", error);
+          console.log(error);
         }
       }
     )

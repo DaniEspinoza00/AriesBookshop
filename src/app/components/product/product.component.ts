@@ -101,7 +101,6 @@ export class ProductComponent implements OnInit {
   }
 
   addToFavs(idBook: number) {
-    console.log(this.userId);
     
     if (this.userId !== null && this.userId !== 0) {
       const fav: favRequest = {
@@ -128,7 +127,7 @@ export class ProductComponent implements OnInit {
     this.FavoritesService.deleteFavorite(this.idFaved).subscribe(
       {
         next:(response)=>{
-          console.log("se elimino el libro", response);
+          console.log(response);
         },
         error:(error)=>{
           console.log(error);
