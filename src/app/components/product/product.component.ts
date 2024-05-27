@@ -110,7 +110,7 @@ export class ProductComponent implements OnInit {
       this.FavoritesService.postFavorite(fav).subscribe(
         {
           next: (response) => {
-            alert("Se añadio correctamente");
+            alert("Product added to favorites");
             this.reloadCurrentRoute();
           },
           error: (error) => {
@@ -119,7 +119,7 @@ export class ProductComponent implements OnInit {
         }
       )
     }else{
-      alert("Debes estar logeado para añadir a favoritos");
+      alert("You should be logged to add this product to favorites");
     }
   }
 
@@ -127,7 +127,8 @@ export class ProductComponent implements OnInit {
     this.FavoritesService.deleteFavorite(this.idFaved).subscribe(
       {
         next:(response)=>{
-          console.log(response);
+          alert("Product removed from favorites");
+          this.reloadCurrentRoute();
         },
         error:(error)=>{
           console.log(error);

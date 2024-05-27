@@ -30,7 +30,7 @@ export class LoginService {
         sessionStorage.setItem("userId", userData.user.id.toString()); // Guarda el ID en el sessionStorage
         this.userId.next(userData.user.id);
       }),
-      map((userData)=> userData.token),//ojo aca
+      map((userData)=> userData.token),
       catchError(this.handleError)
     );
   }
@@ -44,12 +44,12 @@ export class LoginService {
 
   private handleError(error:HttpErrorResponse){
     if(error.status===0){
-      console.error('Se ha producio un error ', error.error);
+      console.error('An error has ocurred ', error.error);
     }
     else{
-      console.error('Backend retornó el código de estado ', error);
+      console.error('Backend sent status code', error);
     }
-    return throwError(()=> new Error('Algo falló. Por favor intente nuevamente.'));
+    return throwError(()=> new Error('Something happened, please try again'));
   }
 
   get userData():Observable<String>{

@@ -112,7 +112,7 @@ login(){
     }
     else{
       this.loginForm.markAllAsTouched();
-      alert("Error al ingresar los datos.");
+      alert("Error entering data.");
     }
   }
 
@@ -120,7 +120,7 @@ login(){
     signup() {
     if (this.sign.invalid) {
       this.signupForm.markAllAsTouched(); 
-      alert("Error al ingresar los datos");
+      alert("Error entering data");
       return;
     }
     const user: RegisterRequest = {

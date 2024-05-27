@@ -94,18 +94,18 @@ export class CartComponent implements OnInit {
 
   buyProducts() {
     if (this.shopForm.invalid) {
-        alert("Llene todos los espacios");
+        alert("Please, fill the inputs");
         return;
     }
 
     Swal.fire({
-      title: 'Confirmación',
-      text: '¿Está seguro de realizar la compra?',
+      title: 'Confirmation',
+      text: 'You want to proceed?',
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Sí',
+      confirmButtonText: 'Yes',
       confirmButtonColor: '#3085d6',
-      cancelButtonText: 'Cancelar',
+      cancelButtonText: 'Cancel',
       cancelButtonColor: '#d33'
   }).then((result) => {
     if(result.isConfirmed){
@@ -113,7 +113,7 @@ export class CartComponent implements OnInit {
         return this.bookListService.getBookStockPrice(product.id).pipe(
             map(response => {
                 if (response.stock < product.quantity) {
-                    throw new Error(`Stock insuficiente para el producto ${product.id}`);
+                    throw new Error(`Insufficient stock ${product.id}`);
                 }
                 return response;
             }),
@@ -128,9 +128,9 @@ export class CartComponent implements OnInit {
             if (anyErrors) {
               Swal.fire({
                 title: 'Error',
-                text: 'No se pudo realizar la compra, stock insuficiente, revise por favor su carrito de compras',
+                text: 'Could not procceed with the purchase, insufficient stock',
                 icon: 'error',
-                confirmButtonText: 'Aceptar',
+                confirmButtonText: 'Accept',
                 cancelButtonColor: '#d33'
             });
                 return;
@@ -138,7 +138,7 @@ export class CartComponent implements OnInit {
             // If everthing is OK, procede to register the purchase and update the stock
             this.processSales();
         },
-        error: (error) => console.error('Error en la verificación de stock:', error)
+        error: (error) => console.error('Error:', error)
     });
     }
   });
