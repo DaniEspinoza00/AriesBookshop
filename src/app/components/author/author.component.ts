@@ -68,7 +68,7 @@ export class AuthorComponent implements OnInit {
   combineBookInfo() {
     this.booksList = this.booksList.map((book, index) => ({
       ...book,
-      booklist: this.booksArray ? this.booksArray[index] : undefined
+      price: this.booksArray ? this.booksArray[index].price : undefined
     }));
   }
   

@@ -10,7 +10,7 @@ import { environment } from '../../environments/environments';
 @Injectable({
   providedIn: 'root'
 })
-export class BooklistService {//para precio y stock
+export class BooklistService {
 
   Booklist:Booklist[]|undefined=[];
 
@@ -24,12 +24,12 @@ export class BooklistService {//para precio y stock
     return this.http.get<Booklist>(environment.urlBooks+"/"+id );
   }
 
-  mostrarPrecioIDstockHttp(librosFiltrados: book[]): Observable<Booklist[]> {
+  showBookByID(librosFiltrados: book[]): Observable<Booklist[]> {
     const requests = librosFiltrados.map(libro => this.getBookStockPrice(libro.id));
   
     return forkJoin(requests).pipe(
       map(resultados => {
-        return resultados; // Devolver los resultados
+        return resultados;
       })
     );
   }
@@ -51,8 +51,7 @@ export class BooklistService {//para precio y stock
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    // return an observable with a user-facing error message
     return throwError(
-      'Something bad happened; please try again later.');
+      'Something happened; please try again later.');
   }
 }

@@ -131,7 +131,7 @@ login(){
       country: this.sign.value.country as string,
     }
     console.log(user);
-    this.signupService.añadirUsuario(user).subscribe(
+    this.signupService.newUser(user).subscribe(
       {
         next: () => {
           Swal.fire({

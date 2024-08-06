@@ -87,7 +87,7 @@ export class PurchaseHistoryComponent implements OnInit {
 
 
   private groupBookIdsByBatchId(sales: any[]): number[][] {
-    const groups = sales.reduce((acc, sale) => {//nueva const
+    const groups = sales.reduce((acc, sale) => {
       if (!acc[sale.batchId]) {
         acc[sale.batchId] = [];
       }
@@ -100,7 +100,7 @@ export class PurchaseHistoryComponent implements OnInit {
 
 
   private loadBooksDetails(): Observable<void> {
-    this.groupedBooks = []; // Limpiamos la matriz groupedBooks antes de cargar nuevos datos
+    this.groupedBooks = [];
 
     const observables = this.groupedBookIds.map(batch => {
       return forkJoin(batch.map(id => this.BooksApiService.getBook(id)));

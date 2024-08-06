@@ -7,5 +7,5 @@ export interface Product{
     price:number;
     quantity:number;
     subtotal?: number;
-    stock:number /* CAMBIADO */
+    stock:number
 }

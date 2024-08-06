@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { catchError, forkJoin, map, of, pipe } from 'rxjs';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -7,8 +8,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, 
-    RouterOutlet, 
+  imports: [CommonModule,
+    RouterOutlet,
     NavbarComponent,
     FooterComponent
   ],

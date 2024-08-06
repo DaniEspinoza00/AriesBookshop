@@ -26,23 +26,24 @@ export class CategoryComponent implements OnInit{
   private BooklistService = inject(BooklistService);
 
   ngOnInit(): void {
-    this.mostrarLibrosPorCategoria();
+    this.showBooksByCategory();
   }
 
-  mostrarLibrosPorCategoria(){
+  showBooksByCategory(){
     this.route.params.subscribe(async param=>{
       const genre:string=param['genre'];
 
-      this.filtrarLibrosHttp(genre);
+      this.bookFilter(genre);
     })
   }
 
-  filtrarLibrosHttp(genre:string){
+  bookFilter(genre:string){
+    
     this.BooksApiServiceService.getBooksByGenre(genre).subscribe(
       {
         next:(bookList)=>{
           this.booksList=bookList;
-          this.filtrarStockHttp();
+          this.stockFilter();
         },
         error:(error)=>{
           console.log(error);
@@ -51,13 +52,16 @@ export class CategoryComponent implements OnInit{
     )
   }
 
-  filtrarStockHttp(){
+  stockFilter(){
     if (this.booksList.length > 0) {
-      forkJoin(this.booksList.map(book => this.BooklistService.getBookStockPrice(book.id))).subscribe(
+      forkJoin(this.booksList.map(book => 
+        this.BooklistService.getBookStockPrice(book.id))).subscribe(
         {
           next:(results)=>{
+            console.log(results);
             this.booksArray = results;
             this.combineBookInfo();
+            console.log(this.booksList);
           },
           error:(error)=>{
             console.log(error);
@@ -68,10 +72,9 @@ export class CategoryComponent implements OnInit{
   }
 
   combineBookInfo() {
-
     this.booksList = this.booksList.map((book, index) => ({
       ...book,
-      booklist: this.booksArray ? this.booksArray[index] : undefined
+      price: this.booksArray ? this.booksArray[index].price : undefined
     }));
   }
 }

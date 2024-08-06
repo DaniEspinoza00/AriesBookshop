@@ -48,7 +48,7 @@ export class CartService {
 
   eliminateProduct(product:Product){
     const index = this.cartProducts.findIndex((book:Product)=>book.id=== product.id);
-    if(this.cartProducts[index].quantity === 1){//esto por si la cantidad era 1 y se baja a 0
+    if(this.cartProducts[index].quantity === 1){
       this.cartProducts.splice(index,1);
       this.product.next(this.cartProducts);
       localStorage.setItem("Cart", JSON.stringify(this.cartProducts));

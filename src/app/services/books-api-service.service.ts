@@ -7,7 +7,7 @@ import { environment } from '../../environments/environments';
 @Injectable({
   providedIn: 'root'
 })
-export class BooksApiServiceService {//para la api publica
+export class BooksApiServiceService {
 
   bookList:book[]=[];
   urlApi:string=environment.baseUrl;
@@ -42,7 +42,9 @@ export class BooksApiServiceService {//para la api publica
 
   getBooksByAuthor(author: string): Observable<book[]> {
     return this.getBooks().pipe(
-      map(books => books.filter(book => book.authors.toLowerCase().includes(author.toLowerCase())))
+      map(books => books.filter(book =>
+        book.authors.toLowerCase().includes(author.toLowerCase())
+      ))
     );
   }
 

@@ -31,18 +31,18 @@ export class SearchComponent implements OnInit {
     this.route.params.subscribe(param => {
       this.search = param['title'];
 
-      this.filtrarLibrosHttp2(this.search)
+      this.bookFilter(this.search)
     })
   }
 
 
-  filtrarLibrosHttp2(search: string) {
+  bookFilter(search: string) {
     this.BooksApiServiceService.getBooksBySearch(search).subscribe(
       {
         next: (response) => {
           this.bookList = response;
 
-          this.obtenerPreciosYStock(this.bookList);
+          this.getPriceStock(this.bookList);
         },
         error: (error) => {
           console.log(error);
@@ -51,8 +51,8 @@ export class SearchComponent implements OnInit {
     )
   }
 
-  obtenerPreciosYStock(librosFiltrados:book[]) {
-    this.BooklistService.mostrarPrecioIDstockHttp(librosFiltrados).subscribe(
+  getPriceStock(librosFiltrados:book[]) {
+    this.BooklistService.showBookByID(librosFiltrados).subscribe(
       {
         next:(response)=>{
           this.bookListPrice = response;

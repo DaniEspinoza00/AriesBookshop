@@ -3,7 +3,7 @@
       <img class="prod-img" [src]="item.image_url" alt="{{ item.title }}">
       <div class="card-body d-flex flex-column container-details">
         <p class="card-titles mb-auto">{{ item.title }}</p>
-        <p class="card-price mt-auto text-center">$ {{ item.booklist?.price | number:'1.2-2'}}</p>
+        <p class="card-price mt-auto text-center">$ {{ item.price | number:'1.2-2'}}</p>
       </div>
     </div>
   </a>

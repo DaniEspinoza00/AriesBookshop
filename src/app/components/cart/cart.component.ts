@@ -48,8 +48,8 @@ export class CartComponent implements OnInit {
       this.userId = id
     })
 
-    this.CartService.products
-      .pipe(map(products => {
+    this.CartService.products.pipe(
+      map(products => {
         return products.reduce((prev, curr) => prev + (curr.subtotal || 0), 0);
       }))
       .subscribe(val => {
@@ -97,7 +97,7 @@ export class CartComponent implements OnInit {
         alert("Please, fill the inputs");
         return;
     }
-
+console.log(this.productList);
     Swal.fire({
       title: 'Confirmation',
       text: 'You want to proceed?',
@@ -110,8 +110,10 @@ export class CartComponent implements OnInit {
   }).then((result) => {
     if(result.isConfirmed){
       const stockVerifications = this.productList.map(product => {
+        console.log(product);
         return this.bookListService.getBookStockPrice(product.id).pipe(
             map(response => {
+              console.log(response);
                 if (response.stock < product.quantity) {
                     throw new Error(`Insufficient stock ${product.id}`);
                 }
@@ -120,10 +122,10 @@ export class CartComponent implements OnInit {
             catchError(error => of(error))
         );
     });
-
+    console.log(stockVerifications);
     forkJoin(stockVerifications).subscribe({
         next: (results) => {
-            // Verifies if there's any arror in the results
+          console.log(results);
             const anyErrors = results.some(result => result instanceof Error);
             if (anyErrors) {
               Swal.fire({
@@ -135,7 +137,6 @@ export class CartComponent implements OnInit {
             });
                 return;
             }
-            // If everthing is OK, procede to register the purchase and update the stock
             this.processSales();
         },
         error: (error) => console.error('Error:', error)

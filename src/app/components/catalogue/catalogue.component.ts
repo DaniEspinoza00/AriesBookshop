@@ -38,8 +38,10 @@ export class CatalogueComponent implements OnInit {
       next: ({books, bookLists}) => {
         this.booksList = books.map(book => {
           const booklist = bookLists.find(bl => bl.id === book.id);
-          return {...book, booklist};
+          const price=booklist?.price;
+          return { ...book, price};
         });
+        console.log(this.booksList);
         this.isLoading = false;
       },
       error: (error) => {

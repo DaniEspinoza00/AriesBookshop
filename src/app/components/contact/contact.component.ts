@@ -17,21 +17,6 @@ export class ContactComponent implements OnInit {
 
   constructor(private keysService: KeysService, private sanitizer: DomSanitizer) { }
 
-  /*ngOnInit(): void {
-    this.keysService.getKey('Google').subscribe(
-      {
-        next: (response: string) => {
-          const placeId = encodeURIComponent("Ek0yNSBkZSBNYXlvIDMxMDgsIEI3NjAwR1dOIE1hciBkZWwgUGxhdGEsIFByb3ZpbmNpYSBkZSBCdWVub3MgQWlyZXMsIEFyZ2VudGluYSIxEi8KFAoSCR08ipgB3ISVERcciMdTu6cPEKQYKhQKEglzLeruVdiElRGHxHIV_bNniA");
-          const mapUrl = `https://www.google.com/maps/embed/v1/place?q=place_id:${placeId}&key=${response}`;
-          this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(mapUrl);
-        },
-        error: (error) => {
-          console.log(error);
-        }
-      }
-    );
-  }*/
-
   ngOnInit(): void {
     this.keysService.getKey('Google').subscribe(
       {
@@ -53,9 +38,6 @@ export class ContactComponent implements OnInit {
     const script = document.getElementById('maps-script') as HTMLScriptElement;
     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
 
-    /*window['initMap'] = () => {
-      // Puedes inicializar el mapa aquí si es necesario
-    };*/
   }
 
 }

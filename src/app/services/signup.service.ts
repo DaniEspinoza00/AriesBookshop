@@ -11,7 +11,7 @@ export class SignUpService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public añadirUsuario(user:any):Observable<any>{
+  public newUser(user:any):Observable<any>{
     return this.httpClient.post<any>(environment.urlHost+"auth/register",user);
   }
 }

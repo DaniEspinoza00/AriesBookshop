@@ -27,7 +27,7 @@ export class LoginService {
         sessionStorage.setItem("token", userData.token);
         this.currentUserData.next(userData.token);
         this.currentUserLoginOn.next(true);
-        sessionStorage.setItem("userId", userData.user.id.toString()); // Guarda el ID en el sessionStorage
+        sessionStorage.setItem("userId", userData.user.id.toString());
         this.userId.next(userData.user.id);
       }),
       map((userData)=> userData.token),

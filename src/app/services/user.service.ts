@@ -35,11 +35,11 @@ export class UserService {
 
   private handleError(error:HttpErrorResponse){
     if(error.status===0){
-      console.error('Se ha producio un error ', error.error);
+      console.error('An error has occurred', error.error);
     }
     else{
-      console.error('Backend retornó el código de estado ', error.status, error.error);
+      console.error('Backend returned status code ', error.status, error.error);
     }
-    return throwError(()=> new Error('Algo falló. Por favor intente nuevamente.'));
+    return throwError(()=> new Error('Something went wrong. Please try again.'));
   }
 }
