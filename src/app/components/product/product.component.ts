@@ -110,7 +110,7 @@ export class ProductComponent implements OnInit {
       }
       this.FavoritesService.postFavorite(fav).subscribe(
         {
-          next: (response) => {
+          next: () => {
             Swal.fire({
               icon: "info",
               title: "Product added to Favorites",
@@ -135,7 +135,7 @@ export class ProductComponent implements OnInit {
   removeFavs(){
     this.FavoritesService.deleteFavorite(this.idFaved).subscribe(
       {
-        next:(response)=>{
+        next:()=>{
           Swal.fire({
             icon: "info",
             title: "Product removed from Favorites",
