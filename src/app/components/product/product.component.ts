@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { Product } from '../../interfaces/product';
 import { Favorites } from '../../interfaces/favorites';
 import { favRequest } from '../../interfaces/favorite-request';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product',
@@ -110,7 +111,10 @@ export class ProductComponent implements OnInit {
       this.FavoritesService.postFavorite(fav).subscribe(
         {
           next: (response) => {
-            alert("Product added to favorites");
+            Swal.fire({
+              icon: "info",
+              title: "Product added to Favorites",
+            });
             this.reloadCurrentRoute();
           },
           error: (error) => {
@@ -119,7 +123,12 @@ export class ProductComponent implements OnInit {
         }
       )
     }else{
-      alert("You should be logged to add this product to favorites");
+      Swal.fire({
+        icon: "error",
+        title: "Cannot add this item to Favorites",
+        text: "You must be logged to add this product",
+        footer: '<a href="/login">Login</a>'
+      });
     }
   }
 
@@ -127,7 +136,10 @@ export class ProductComponent implements OnInit {
     this.FavoritesService.deleteFavorite(this.idFaved).subscribe(
       {
         next:(response)=>{
-          alert("Product removed from favorites");
+          Swal.fire({
+            icon: "info",
+            title: "Product removed from Favorites",
+          });
           this.reloadCurrentRoute();
         },
         error:(error)=>{

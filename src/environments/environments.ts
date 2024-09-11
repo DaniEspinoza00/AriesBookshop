@@ -1,10 +1,10 @@
 export const environment = {
     production: false,
-    baseUrl:'https://example-data.draftbit.com',
-    urlHost:'http://localhost:8080/',
-    urlApi: 'http://localhost:8080/api/v1/',
-    urlBooks:'http://localhost:8080/api/booklist',
-    urlFavs:'http://localhost:8080/api/favorites',
-    urlSales:'http://localhost:8080/api/sales',
-    urlApiKey:'http://localhost:8080/api/keys',
+    baseUrl: 'https://example-data.draftbit.com',
+    urlHost: 'https://aries-bookshop.up.railway.app/',
+    urlApi: 'https://aries-bookshop.up.railway.app/api/v1/',
+    urlBooks: 'https://aries-bookshop.up.railway.app/api/booklist',
+    urlFavs: 'https://aries-bookshop.up.railway.app/api/favorites',
+    urlSales: 'https://aries-bookshop.up.railway.app/api/sales',
+    urlApiKey: 'https://aries-bookshop.up.railway.app/api/keys',
 }

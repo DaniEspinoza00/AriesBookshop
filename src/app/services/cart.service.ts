@@ -1,6 +1,7 @@
 import { Product } from './../interfaces/product';
 import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,11 @@ export class CartService {
     }else {
       this.pushItem(product);
     }
+    Swal.fire({
+      title:"Item added to cart",
+      icon: "success",
+      timer: 1000,
+    })
   }
 
   pushItem(product:Product){
