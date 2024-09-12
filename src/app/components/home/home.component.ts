@@ -8,11 +8,13 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import AOS from 'aos';
 import { forkJoin } from 'rxjs';
+import { HomeReccommendationsComponent } from './home-recommendations/home-reccommendations.component';
+import { HomeCategoriesComponent } from './home-categories/home-categories.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NgIf,NgFor,RouterModule,CommonModule, RouterLink, MatProgressSpinnerModule],
+  imports: [NgIf,NgFor,RouterModule,CommonModule, RouterLink, MatProgressSpinnerModule, HomeReccommendationsComponent, HomeCategoriesComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   encapsulation: ViewEncapsulation.Emulated

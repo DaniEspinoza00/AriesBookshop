@@ -1,0 +1,13 @@
+@for (item of homeItem; track item.navigate) {
+    <div class="item-category">
+      <div class="container-img" data-aos="fade-right" [ngStyle]="{'order': $first || $index === 2 ? 1 : 'initial'}">
+        <img [ngSrc]="item.image" width="80" height="80" alt="{{item.navigate}}">
+      </div>
+      <div class="item-category-resume" data-aos="fade-left">
+        <h2 class="category-title">{{item.title}}</h2>
+        <p class="category-title-info">{{item.text}}</p>
+        <button type="button" (click)="navigate('{{item.navigate}}')" class="btn btn-outline-primary">See All</button>
+      </div>
+    </div>
+  }
+  
